@@ -1,9 +1,14 @@
-name: documentation
+name: Deploy
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
+
 
 jobs:
   docs:
@@ -11,10 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
+        with:
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      - name: Sphinx build
+      - name: Build HTML documentaiton
         run: |
           make html
       - name: Deploy to GitHub Pages
