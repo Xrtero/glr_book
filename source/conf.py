@@ -16,8 +16,7 @@ author = 'xrtero'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 sys.path.append(os.path.abspath('myst_parser'))
 
-extensions = ['myst_parser',
-              'sphinx.ext.githubpages']
+extensions = ['myst_parser']
 
 
 myst_enable_extensions = [
@@ -25,7 +24,6 @@ myst_enable_extensions = [
     "html_image",
 ]
 
-html_baseurl = "https://www.xrtero.com/book/glr"
 
 templates_path = ['_templates']
 exclude_patterns = []
