@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Recognition and parsing &mdash; Generalised LR parsing algorithms  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="canonical" href="https://www.xrtero.com/book/glr/2  Recognition and parsing.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. The development of generalised parsing" href="3%20The%20development%20of%20generalised%20parsing.html" />
+    <link rel="prev" title="1. Introduction" href="1%20Introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Generalised LR parsing algorithms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1%20Introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Recognition and parsing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#languages-and-grammars">2.1 Languages and grammars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#context-free-grammars">2.2 Context-free grammars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-sentences">2.2.1 Generating sentences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backus-naur-form">2.2.2 Backus Naur form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.2.3 Recognition and parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parse-trees">2.2.4 Parse trees</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-context-free-grammars">2.3 Parsing context-free grammars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#top-down-parsing">Top-down parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bottom-up-parsing">2.3.2 Bottom-up parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsing-with-searching">2.3.3 Parsing with searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ambiguous-grammars">2.3.4 Ambiguous grammars</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-deterministic-context-free-grammars">2.4 Parsing deterministic context-free grammars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructing-a-handle-finding-automaton">2.4.1 Constructing a handle finding automaton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsing-with-a-dfa">2.4.2 Parsing with a DFA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lr-parsing">2.4.3 LR parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsing-with-lookahead">2.4.2 Parsing with lookahead</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#slr-1">SLR(1)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">2.5 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3%20The%20development%20of%20generalised%20parsing.html">3. The development of generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4%20Generalised%20LR%20parsing.html">4. Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5%20Right%20Nulled%20Generalised%20LR%20parsing.html">5. Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6%20Binary%20Right%20Nulled%20Generalised%20LR%20parsing.html">6.Binary Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7%20Reduction%20Incorporated%20Generalised%20LR%20parsing.html">7.Reduction Incorporated Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8%20Other%20approaches%20to%20generalised%20parsing.html">8 Other approaches to generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9%20Some%20generalised%20parser%20generators.html">9. Some generalised parser generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Experimental%20investigation.html">10. Experimental investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11%20Concluding%20remarks.html">11. Concluding remarks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Generalised LR parsing algorithms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2. Recognition and parsing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2  Recognition and parsing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="recognition-and-parsing">
+<h1>2. Recognition and parsing<a class="headerlink" href="#recognition-and-parsing" title="Permalink to this heading">¶</a></h1>
+<p>In order to execute programs, computers need to be able to analyse and translate programming languages. In general, programming languages are simpler than human languages, but many of the principles involved in studying them are similar.</p>
+<p>The compilation process as a whole has been meticulously studied for a long time. However, writing a correct and efficient parser by hand is still a difficult task. Although tools exist that can automatically generate parsers from a grammar specification, limitations with the techniques mean that they often fail.</p>
+<p>The early high level programming languages, like <span class="math notranslate nohighlight">\(FORTRAN\)</span>, were developed with expressibility rather than parsing efficiency in mind. Some language constructs turned out to be difficult to parse efficiently, but without a proper understanding of the reasons behind this inefficiency, a solution was difficult to come by. The subsequent work on formal language theory by Chomsky provided a solid theoretical base for language development.</p>
+<p>The field of research that investigates languages, grammars and parsing is called formal language theory. This chapter provides a brief overview of language classification as defined by Chomsky [Cho56] and introduces the formal definitions and basic concepts that underpin programming language parsing. We discuss general top-down and bottom-up parsing and the standard deterministic LR parsing technique.</p>
+<section id="languages-and-grammars">
+<h2>2.1 Languages and grammars<a class="headerlink" href="#languages-and-grammars" title="Permalink to this heading">¶</a></h2>
+<p>In formal language theory a language is considered to be a set of sentences. A <em>sentence</em> consists of a sequence of words that are concatenations of a number of symbols from a finite <em>alphabet</em>. A finite language can be defined by providing an enumeration of the sentences it contains. However, many languages are infinite and attempting to enumerate their contents would be a fruitless exercise. A more useful approach is to provide a set of rules that describe the structure, or <em>syntax</em>, of the language. These rules, collectively known as a <em>grammar</em>, can then be used to generate or recognisesyntactically correct sentences.</p>
+<p>The work pioneered by Chomsky in the late 1950’s formalised the notion of a grammar as a generative device of a language<a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. He developed four types of grammars and classified them by the structures they are able to define. This famous categorisation, known as the Chomsky hierarchy, is shown in Table 2.1. Each class of language can be specified by a particular type of grammar and recognised by a particular type of formal machine. The automata in the right hand column of the table are the machines that accept the strings of the associated language.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072302280.png" /></p>
+<p>The grammars towards the bottom of the hierarchy define the languages with the simplest structure. The rules of a regular grammar are severely restricted and as a result, are only capable of defining simple languages. For example, they cannot generate languages in which parentheses must occur in matched pairs. Despite the limited nature of the regular languages, the corresponding finite automata play an important role in the recognition of the more powerful context-free languages.</p>
+<p>The languages defined by context-free grammars are less confined by the restrictions imposed upon their grammar rules. In addition to expressing all the regular languages, they can also define recursively nested structures, common in many programming languages. As a result, the context-free grammars are often used to define the structure of modern programming languages and their automata form the basis of many classes of corresponding recognition and parsing tools.</p>
+<p>Certain structural dependencies cannot be expressed by a context-free grammar alone. The context-sensitive grammars define the languages whose structure depends upon their surrounding context. Although attempts have been made to use the context-sensitive grammars to define natural languages, see for example [14], the resulting grammars tend to be very difficult to understand and use. In a similar way, although the recursively enumerable languages, generated by the type-0 grammars, are the most powerful in the hierarchy, their complicated structure means that they are usually only of theoretical interest.</p>
+</section>
+<section id="context-free-grammars">
+<h2>2.2 Context-free grammars<a class="headerlink" href="#context-free-grammars" title="Permalink to this heading">¶</a></h2>
+<p>At the core of a context-free grammar is a finite set of rules. Each rule defines a set of sequences of symbols that it can generate. There are two types of symbols in a context-free grammar; the <em>terminals</em>, which are the symbols, letters or words, of the language and the <em>non-terminals</em> which can be thought of as variables - they constitute the left hand sides of the rules. An example of a context-free grammar for a subset of the English language is given in Grammar 2.1. The non-terminals are shown as the upper case words and the terminals as the lower case words.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072306403.png" /></p>
+<section id="generating-sentences">
+<h3>2.2.1 Generating sentences<a class="headerlink" href="#generating-sentences" title="Permalink to this heading">¶</a></h3>
+<p>We generate strings from other strings using the grammar rules by taking a string and replacing a non-terminal with the right hand side of one of its rules. So for example, from the string</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072306020.png" /></p>
+<p>we can generate</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072307085.png" /></p>
+<p>by replacing the non-terminal VerbPhrase. We often write this as
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072306215.png" />
+and call it a derivation step.</p>
+<p>We are interested in the set <span class="math notranslate nohighlight">\(L(A)\)</span> of all strings, that contain only terminals, that can be generated from a non-terminal <span class="math notranslate nohighlight">\(A\)</span>. This is called the language of <span class="math notranslate nohighlight">\(A\)</span>. One of the non-terminals will be designated as the start symbol and the language generated by this non-terminal is called the language of the grammar. For example, the sentence_I hit the man with a bat_ can be generated from the non-terminal SENTENCE in Grammar 2.1 in the following way:</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072307089.png" />
+A sequence of derivation steps is called a derivation.<br />
+The basic idea is to use a grammar to define our chosen programming language.</p>
+<p>Then given some source code we need to determine if it is a valid program, ie a sentence in the language of the grammar. This can be achieved by finding a derivation of the program. The construction of derivations is referred to as parsing, or syntax analysis.</p>
+</section>
+<section id="backus-naur-form">
+<h3>2.2.2 Backus Naur form<a class="headerlink" href="#backus-naur-form" title="Permalink to this heading">¶</a></h3>
+<p>At about the same time as Chomsky was investigating the use of formal grammars to capture the key properties of human languages, similar ideas were being used to describe the syntax of the Algol programming language <span class="math notranslate nohighlight">\(\left[\mathrm{BWvW}^{+} 60\right]\)</span>. Backus Naur Form (also known as Backus Normal Form or BNF) is the notation developed to describe Algol and it was later shown that languages defined by BNF are equivalent to context-free grammars [GR62]. Because of its more convenient notation, BNF has continued to be used to define programming languages.</p>
+<p>In BNF the non-terminals that declare a rule are separated from the body of the rule by ::= instead of the <span class="math notranslate nohighlight">\(\rightarrow\)</span> symbol. In addition to this, a rule can define a choice of sequences with the use of the <span class="math notranslate nohighlight">\(|\)</span> symbol. So for example, Grammar 2.2 is the BNF representation of Grammar 2.1.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072310224.png" /></p>
+<p>We shall use the BNF notation to define all of the context-free grammars in the remainder of this thesis. In addition to this, we shall maintain the following convention when discussing context-free grammars: lower case characters near the front of the alphabet, digits and symbols like <span class="math notranslate nohighlight">\(+\)</span>, represent terminals; upper case characters near the front of the alphabet represent non-terminals; lower case characters near the end of the alphabet represent strings of terminals; upper case characters near the end of the alphabet represent strings of either terminals or non-terminals; lower case Greek characters represent strings of terminals and/or non-terminals.</p>
+<p>We define a context-free grammar formally as a 4-tuple <span class="math notranslate nohighlight">\(\langle\mathbf{N},\mathbf{T},\mathbf{S},\mathbf{P}\rangle\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{N}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> are disjoint finite sets of grammar symbols, called non-terminals and terminals respectively; <span class="math notranslate nohighlight">\(\mathbf{S}\in\mathbf{N}\)</span> is the special start symbol; <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is the finite set of production rules of the form <span class="math notranslate nohighlight">\(A::=\beta\)</span>, where <span class="math notranslate nohighlight">\(A\in\mathbf{N}\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> is the string of symbols from <span class="math notranslate nohighlight">\((\mathbf{N}\cup\mathbf{T})^{*}\)</span>. The production rule <span class="math notranslate nohighlight">\(S::=\alpha\)</span> where <span class="math notranslate nohighlight">\(S\in\mathbf{S}\)</span> is called the grammar’s <em>start symbol</em>. We may augment a grammar with the new non-terminal, <span class="math notranslate nohighlight">\(S^{\prime}\)</span>, that does not appear on the right hand side of any other production rule. The empty string is represented by the <span class="math notranslate nohighlight">\(\epsilon\)</span> symbol. For example consider Grammar 2.3 which defines the language <span class="math notranslate nohighlight">\(\{ac,abc\}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072310602.png" /></p>
+<p>The replacement of a single non-terminal in a sequence of terminals and non-terminals is called a <em>derivation step</em> and is represented by the <span class="math notranslate nohighlight">\(\Rightarrow\)</span> symbol. The application of a number of derivation steps is called a <em>derivation</em>. We use the  <span class="math notranslate nohighlight">\(\stackrel{*}{\Rightarrow}\)</span> symbol to represent a derivation consisting of zero or more steps and the <span class="math notranslate nohighlight">\(\stackrel{{+}}{{\Rightarrow}}\)</span> symbol for derivations of one or more steps. Any string <span class="math notranslate nohighlight">\(\alpha\)</span> such that <span class="math notranslate nohighlight">\(S \stackrel{*}{\Rightarrow} \alpha\)</span> is called a <em>sentential form</em> and a sentential form that contains only terminals is called a <em>sentence</em>. A non-terminal that derives the empty string is called <em>nullable</em>. If <span class="math notranslate nohighlight">\(A::=\epsilon\)</span> then <span class="math notranslate nohighlight">\(\alpha A\beta\Rightarrow\alpha\beta\)</span>.</p>
+<p>We call rules of the form <span class="math notranslate nohighlight">\(A::=\alpha\beta\)</span> where <span class="math notranslate nohighlight">\(\beta\stackrel{{*}}{{=}}\epsilon\)</span> right nullable rules. A grammar that contains a non-terminal <span class="math notranslate nohighlight">\(A\)</span>, such that <span class="math notranslate nohighlight">\(A\stackrel{{+}}{{\Rightarrow}}\alpha A\beta\)</span>, where <span class="math notranslate nohighlight">\(\alpha,\beta\neq\epsilon\)</span>, is said to contain self-embedding.</p>
+<p>Since there is often a choice of non-terminals to replace in each derivation step, one of two approaches is usually taken; either the leftmost or the rightmost non-terminal is always replaced. The former approach achieves a <em>leftmost</em> derivation whereas the latter produces a <em>rightmost</em> derivation. The derivation in Section 2.2 is a leftmost derivation.</p>
+</section>
+<section id="id2">
+<h3>2.2.3 Recognition and parsing<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>An important aspect of the study of context-free grammars is the recognition of the sentences of their languages. It turns out that given any context-free grammar there is a Push Down Automaton (PDA) that accepts precisely the language of the grammar. Tools that take a string and determine whether or not it is a sentence are called <em>recognisers</em>.</p>
+<p>In addition to implementing a recogniser, many applications that use context-free grammars also want to know the syntactic structure of any strings that are recognised. Since the rules of a grammar reflect the syntactic structure of a language, we can build up a syntactic representation of a recognised string by recording the rules used in a derivation. Tools that construct some form of syntactic representation of a string are called <em>parsers</em>.</p>
+</section>
+<section id="parse-trees">
+<h3>2.2.4 Parse trees<a class="headerlink" href="#parse-trees" title="Permalink to this heading">¶</a></h3>
+<p>A useful way of representing the structure of a derivation is with a <em>parse tree</em>. A parse tree is a rooted tree with terminal symbols of the sentence appearing as leaf nodes and non-terminals as the interior nodes. If an interior node is labelled with the non-terminal <span class="math notranslate nohighlight">\(A\)</span> then its children are labelled <span class="math notranslate nohighlight">\(A_{1},...,A_{j}\)</span>, where the rule <span class="math notranslate nohighlight">\(A::=A_{1}...A_{j}\)</span> has been used at the corresponding point in the derivation. The <em>root</em> of a parse tree is labelled by the start symbol of the associated grammar and its <em>yield</em> is defined to be the sequence of terminals that label its leaves. Figure 2.1 is a parse tree representing the derivation of the sentence <em>I hit the man with a bat</em> for Grammar 2.1.</p>
+</section>
+</section>
+<section id="parsing-context-free-grammars">
+<h2>2.3 Parsing context-free grammars<a class="headerlink" href="#parsing-context-free-grammars" title="Permalink to this heading">¶</a></h2>
+<p>The aim of a parser is to determine if it is possible to derive a sentence from a context-free grammar whilst also building a representation of the grammatical structure of the sentence. There are two common approaches to building a parse tree, top-down and bottom-up. This section presents the top-down and bottom-up parsing approaches.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072313595.png" /></p>
+<section id="top-down-parsing">
+<h3>Top-down parsing<a class="headerlink" href="#top-down-parsing" title="Permalink to this heading">¶</a></h3>
+<p>A top-down parser attempts to derive a sentence by performing a sequence of derivation steps from the start rule of the grammar. It gets its name from the order in which the nodes in the parse tree are constructed during the parsing process; each node is created before its children.</p>
+<p>Top-down parsers are usually implemented to produce leftmost derivations and are sometimes called predictive parsers because of the way they ‘predict’ the rules to use in a derivation. To parse a string we begin with the start symbol and predict the right hand side of the start rule. If the first symbol on the right hand side of the predicted rule is a terminal that matches the symbol on the input, then we read the next input symbol and move on to the next symbol of the rule. If it is a non-terminal then we <em>predict</em> the right hand side of the rule it defines.</p>
+<p>For example consider the following top-down parse of the string <em>bdac</em> for Grammar 2.4.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072313807.png" /></p>
+<p>The start symbol of the grammar is defined to be <span class="math notranslate nohighlight">\(S\)</span>, so we begin by creating the root of the parse tree and labeling it <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072314074.png" />
+The right hand side of the start rule is made up of two symbols so the new sentential form generated is <span class="math notranslate nohighlight">\(Ac\)</span>. We create two new nodes, labelled <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(c\)</span> respectively, and add them as children of the root node.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072314831.png" /></p>
+<p>At this point we are looking at the first symbol of the sentential form <span class="math notranslate nohighlight">\(Ac\)</span>. Since <span class="math notranslate nohighlight">\(A\)</span> is a non-terminal, we need to predict the right hand side of the rule it defines. However, the production rule for <span class="math notranslate nohighlight">\(A\)</span> has two alternates, <span class="math notranslate nohighlight">\(BDa\)</span> and <span class="math notranslate nohighlight">\(DBa\)</span>, so we are required to pick one. If the first alternate is selected, then the parse tree shown below is constructed.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072314770.png" /></p>
+<p>The new sentential form is <span class="math notranslate nohighlight">\(BDac\)</span>, so we continue by predicting the non-terminal <span class="math notranslate nohighlight">\(B\)</span> and create the following parse tree.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072315757.png" /></p>
+<p>We then match the symbol <span class="math notranslate nohighlight">\(b\)</span> in the sentential form <span class="math notranslate nohighlight">\(bDac\)</span> with the next input symbol and continue to predict the non-terminal <span class="math notranslate nohighlight">\(D\)</span>. This results in the parse tree below being constructed.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072315008.png" />
+The only symbols in the sentential form that have not yet been parsed are the terminals <span class="math notranslate nohighlight">\(dac\)</span>. A successful parse is completed once all of these symbols are matched to the remaining input string.</p>
+<p>Perhaps the most popular implementation of the top-down approach to parsing is the recursive descent technique. Recursive descent parsers define a parse function for each production rule of the grammar - when a non-terminal is to be matched, the parse function for that non-terminal is called. As a result recursive descent parsers are relatively straightforward to implement and their structure closely reflects the structure of the grammar.</p>
+<p>This approach to parsing can run into problems when there is a choice of alternates to be used in a derivation. For example, in the above parse if we had picked the rule <span class="math notranslate nohighlight">\(DBa\)</span> instead of <span class="math notranslate nohighlight">\(BDa\)</span> then the parse would have failed.</p>
+<p>We could backtrack to the point that a choice was made and choose a different alternative, but this approach can result in exponential costs and in certain cases may not even terminate. A particular problem is caused by grammars with left recursive rules.</p>
+<p><strong>Recursive grammars</strong></p>
+<p>A grammar has <span class="math notranslate nohighlight">\(\textit{left (or right)}\)</span> recursion if it contains a non-terminal <span class="math notranslate nohighlight">\(A\)</span> and a derivation <span class="math notranslate nohighlight">\(A \stackrel{+}{\Rightarrow} \alpha A \beta\)</span> where <span class="math notranslate nohighlight">\(\alpha \stackrel{*}{\Rightarrow} \epsilon (or \beta \stackrel{*}{\Rightarrow} \epsilon )\)</span>. If \alpha \neq \epsilon( or \beta \neq \epsilon) then the recursion is referred to as hidden.</p>
+<p>Unfortunately, the standard recursive descent parsers, and most parsers that produce leftmost derivations, cannot easily parse left recursive grammars. In the case of a left recursive rule like <span class="math notranslate nohighlight">\(A::=Ab\)</span>, the parse function for <span class="math notranslate nohighlight">\(A\)</span> will repeatedly call itself without matching any input.</p>
+<p>Although left recursion can be mechanically removed from a grammar [AU73], the removal process alters the structure of the grammar and hence the structure of the parse tree.</p>
+</section>
+<section id="bottom-up-parsing">
+<h3>2.3.2 Bottom-up parsing<a class="headerlink" href="#bottom-up-parsing" title="Permalink to this heading">¶</a></h3>
+<p>A bottom-up parser attempts to build up a derivation in reverse, effectively deriving the start symbol from the string that is parsed. Its name refers to the order in which the nodes of the parse tree are constructed; the leaf nodes at the bottom are created first, followed by the interior nodes and then finally the root of the tree.</p>
+<p>It is natural for the implementation of a bottom-up parser to produce a right-most derivation. A string is parsed by <em>shifting</em> (reading) a number of its symbols until a string of symbols is found that matches the right hand side of a rule. The portion of the sentential form that matches the right hand side of a production rule is called a <em>handle</em>. Once the handle is found, the substring in the sentential form is <em>reduced</em> (replaced) by the non-terminal on the left hand side of the rule. For each of the terminal symbols shifted, a leaf node in the parse tree is constructed. When a reduction is performed, a new intermediate node is created and the nodes labelled by the symbols in the handle are added to it as children. A string is successfully parsed when a node labelled by the grammar’s start symbol is created in the parse tree and the sentential form only contains the grammar’s start symbol.</p>
+<p>For example, consider Grammar 2.5 and the parse tree constructed for a bottom-up parse of the string <span class="math notranslate nohighlight">\(abcd\)</span>.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072318742.png" /></p>
+<p>We begin by shifting the first symbol from the input string and create the node labelled <span class="math notranslate nohighlight">\(a\)</span> in the parse tree.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072318915.png" />
+Since there is a rule <span class="math notranslate nohighlight">\(A::=a\)</span> in the grammar, we can use it to reduce the sentential form <span class="math notranslate nohighlight">\(a\)</span> to <span class="math notranslate nohighlight">\(A\)</span>. We create the new intermediate node in the parse tree labelled <span class="math notranslate nohighlight">\(A\)</span> and make it the parent of the existing node labelled <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072318041.png" /></p>
+<p>We continue by shifting the next two input symbols to produce the sentential form <span class="math notranslate nohighlight">\(Abc\)</span>. At this point we can reduce the whole of the sentential form to <span class="math notranslate nohighlight">\(A\)</span> using the rule <span class="math notranslate nohighlight">\(A::=Abc\)</span>. We create the new node labelled <span class="math notranslate nohighlight">\(A\)</span> as a parent of the nodes labelled <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> in the parse tree.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072318257.png" /></p>
+<p>Once the final input symbol is shifted, we can reduce the substring <span class="math notranslate nohighlight">\(Ad\)</span> in the sentential form to the start symbol <span class="math notranslate nohighlight">\(S\)</span> and create the root node of the parse tree to complete the parse.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072318897.png" />
+Bottom-up parsers that are implemented to perform these shift and reduce actions are often referred to as shift-reduce parsers.</p>
+<p>To assist our later discussions of the bottom-up parsing technique we shall define the notion of a <em>viable prefix</em> and a <em>viable string</em>. A viable prefix is a substring of a sentential form that does not continue past the end of the handle. A viable string is a viable prefix that includes a sentential form’s handle. We define a handle more formally as a substring <span class="math notranslate nohighlight">\(\gamma\)</span>, that is the right hand side of a grammar rule and that appears in a sentential form <span class="math notranslate nohighlight">\(\beta\)</span> that can be replaced to create another sentential form as part of a derivation.</p>
+<p>Although standard bottom-up parsers are often difficult to implement by hand, the development of parser generator tools, like Yacc, have resulted in the bottom-up approach to parsing becoming very popular.</p>
+<p>The class of grammars parsable using a standard deterministic bottom-up technique is larger than the class that can be parsed with a standard deterministic recursive descent parser.</p>
+</section>
+<section id="parsing-with-searching">
+<h3>2.3.3 Parsing with searching<a class="headerlink" href="#parsing-with-searching" title="Permalink to this heading">¶</a></h3>
+<p>Recall that during both of our top-down and the bottom-up example parses, we came across a sentential form which had a choice of production rules to predict or reduce by. Fortunately in both cases, we picked a rule that succeeded in producing a derivation. Clearly, parsing may not always be this straightforward.</p>
+<p>To deal with such problems a parser can implement one of two obvious approaches. It can either pick the first alternate encountered, as we did in the examples, and record the sentential form that the choice was made at, or parse all possibilities at the same time.</p>
+<p>Parsers that adopt the latter approach are the focus of this thesis. We finish this section with a brief discussion of ambiguous grammars. The rest of this chapter is devoted to the standard deterministic LR parsing technique which forms the basis of the general, GLR, parser.</p>
+</section>
+<section id="ambiguous-grammars">
+<h3>2.3.4 Ambiguous grammars<a class="headerlink" href="#ambiguous-grammars" title="Permalink to this heading">¶</a></h3>
+<p>For some grammars it turns out that certain strings have more than one parse tree. These grammars are called <em>ambiguous</em>. For example, consider Grammar 2.6, which defines the syntax of simple arithmetic expressions.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072319319.png" /></p>
+<p>There are two parse trees that can be constructed for the string <span class="math notranslate nohighlight">\(a+a*a\)</span> which are shown in Figure 2.2.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072322671.png" />
+Clearly the searching involved in parsing ambiguous grammars can be expensive. Since context-free grammars are used to define the syntax of programming languages their parsers play an important role in the compilation process of a program, and thus need to be as efficient as possible. As a result several techniques have been developed that are capable of parsing certain non-ambiguous grammars efficiently. The next section focuses on a class of grammars for which an efficient bottom-up parsing technique can be mechanically produced.</p>
+</section>
+</section>
+<section id="parsing-deterministic-context-free-grammars">
+<h2>2.4 Parsing deterministic context-free grammars<a class="headerlink" href="#parsing-deterministic-context-free-grammars" title="Permalink to this heading">¶</a></h2>
+<p>A computer can be thought of as a finite state system and theoreticians often describe what a computer is capable of doing using a Turing machine as a model. Turing machines are the most powerful type of automaton, but the construction and implementation of a particular Turing machine is often infeasible. Other types of automata exist that are useful models for many software and hardware problems. It turns out that the deterministic pushdown automata (DPDA) are capable of modeling a large and useful subset of the context-free grammars. Although these parsers do not work for all context-free grammars, the syntax of most programming languages can be defined by them.</p>
+<p>In his seminal paper [10] Donald Knuth presented the LR parsing algorithm as a technique which could parse the class of deterministic context-free grammars in linear time. This section presents that algorithm and shows how the required automata are constructed.</p>
+<section id="constructing-a-handle-finding-automaton">
+<h3>2.4.1 Constructing a handle finding automaton<a class="headerlink" href="#constructing-a-handle-finding-automaton" title="Permalink to this heading">¶</a></h3>
+<p>One of the fundamental problems of any shift-reduce parser is the location of the handle in a sentential form. The approach taken in the previous section compared each sentential form with all the production rules until a handle was found. Clearly this approach is far from ideal.</p>
+<p>It turns out that it is possible to construct a Non-deterministic Finite Automaton (NFA) from a context-free grammar to recognise exactly the handles of all possible sentential forms. A finite automaton is a machine that uses a transition function to move through a set of states given a string of symbols. One state is defined to be the automaton’s start state and at least one state is defined as an accept state.</p>
+<p>We now give a brief description of an NFA for a grammar. Full details can be found in texts such as [ASU86]. Our description here is based on that given in [GJ90].</p>
+<p>Finite automata are often represented as transition diagrams, where the states are depicted as nodes and the transition function is defined by the labelled edges between the states. We can construct a finite automaton that accepts the handles of a context-free grammar by labeling the edges with grammar symbols and using the states to represent the substring of a production rule that has been recognised in a derivation. Each of the states are labelled by an <em>item</em> - a production rule of the form (<span class="math notranslate nohighlight">\(A::=\alpha\cdot\beta\)</span>) where the substring to the left of the <span class="math notranslate nohighlight">\(\cdot\)</span> symbol is a viable prefix of a handle. The accept states of the automaton are labelled by an item of the form (<span class="math notranslate nohighlight">\(A::=\alpha\beta\cdot\)</span>) which indicates that the handle <span class="math notranslate nohighlight">\(\alpha\beta\)</span> has been located.</p>
+<p>We build the NFA of a context-free grammar by first constructing separate NFA’s for each of the grammar’s production rules. Given a rule <span class="math notranslate nohighlight">\(A::=\alpha\beta\)</span> we create the start state of the automaton labelled by the item (<span class="math notranslate nohighlight">\(A::=\cdot\alpha\beta\)</span>). For each state that is labelled by an item of the form (<span class="math notranslate nohighlight">\(A::=\alpha\cdot x\beta\)</span>), we create a new state labelled (<span class="math notranslate nohighlight">\(A::=\alpha x\cdot\beta\)</span>) and add an edge, labelled <span class="math notranslate nohighlight">\(x\)</span>, between the two states.</p>
+<p>These separate automata recognise all right hand sides of a grammar’s production rules. Although this includes the handles of any sentential form, they also recognise the substrings that are not handles. We can ensure that only handles are recognised by only considering the right hand sides of rules that can be derived from the start rule of the grammar. To achieve this, the automata are joined by <span class="math notranslate nohighlight">\(\epsilon\)</span> transitions from the states that are labelled with items of the form (<span class="math notranslate nohighlight">\(A::=\alpha\cdot B\beta\)</span>), to the start state of the automaton for <span class="math notranslate nohighlight">\(B\)</span>’s production rule. The start state of this new combined automaton is the state labelled by the item (<span class="math notranslate nohighlight">\(S^{\prime}::=\cdot S\)</span>).
+For example, the NFA for Grammar 2.7 is shown in Figure 2.3.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072324582.png" />
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072324609.png" /></p>
+<p>To recognise a handle of a sentential form we traverse a path from the start state of the NFA labelled by the symbols in the sentential form. If we end up in an accept state, then we have found the left-most handle of the sentential form.</p>
+<p>The traversal is complicated by the fact that the automaton is non-deterministic. For now we take the straightforward approach and follow all traversals in a breadth-first manner. For example, consider the sentential form <span class="math notranslate nohighlight">\(abc\)</span> and the NFA in Figure 2.3. We begin by traversing the two <span class="math notranslate nohighlight">\(\epsilon\)</span>-edges from the start state. The states we reach are labelled (<span class="math notranslate nohighlight">\(S::=\cdot aAc\)</span>) and (<span class="math notranslate nohighlight">\(S::=\cdot bAdd\)</span>). We read the first symbol in the sentential form and traverse the edge to state (<span class="math notranslate nohighlight">\(S::=a\cdot Ac\)</span>). Because we cannot traverse the edge labelled <span class="math notranslate nohighlight">\(b\)</span> from state (<span class="math notranslate nohighlight">\(S::=\cdot bAdd\)</span>) we abandon that traversal.</p>
+<p>From the current state there is one edge labelled <span class="math notranslate nohighlight">\(A\)</span> and another labelled <span class="math notranslate nohighlight">\(\epsilon\)</span>. Since the next symbol is not <span class="math notranslate nohighlight">\(A\)</span> we can only traverse the <span class="math notranslate nohighlight">\(\epsilon\)</span>-edge that leads to the state labelled (<span class="math notranslate nohighlight">\(A::=\cdot b\)</span>). From there we read the <span class="math notranslate nohighlight">\(b\)</span> and traverse the edge to state (<span class="math notranslate nohighlight">\(A::=b\cdot\)</span>). Since this state is an accept state, we have successfully found the handle <span class="math notranslate nohighlight">\(A\)</span> in the sentential form <span class="math notranslate nohighlight">\(abc\)</span>.</p>
+<p>Although this approach to finding handles can be used by bottom-up parsers, the non-deterministic nature of the NFA makes the traversal inefficient. However, it turns out that it is possible to convert any NFA to a Deterministic Finite Automaton (DFA) with the use of the subset construction algorithm [AU73].</p>
+<p>The subset construction algorithm performs the <span class="math notranslate nohighlight">\(\epsilon\)</span>-closure from a node, <span class="math notranslate nohighlight">\(v\)</span>, to find the set of nodes, <span class="math notranslate nohighlight">\(W\)</span>, that can be reached along a path of <span class="math notranslate nohighlight">\(\epsilon\)</span>-edges in the <strong>NFA</strong>. A new node, <span class="math notranslate nohighlight">\(y\)</span> is constructed in the <strong>DFA</strong> that is labelled by the items of the nodes in <span class="math notranslate nohighlight">\(W\)</span>. Then for the set of nodes, <span class="math notranslate nohighlight">\(\gamma\)</span>, that can be reached by an edge labelled <span class="math notranslate nohighlight">\(x\)</span> from a node in <span class="math notranslate nohighlight">\(W\)</span>, we create a new node <span class="math notranslate nohighlight">\(z\)</span> in the <strong>DFA</strong>. We label <span class="math notranslate nohighlight">\(z\)</span> with the items of the nodes in <span class="math notranslate nohighlight">\(\gamma\)</span> and the items of the nodes found by performing the <span class="math notranslate nohighlight">\(\epsilon\)</span>-closure on each node in <span class="math notranslate nohighlight">\(\gamma\)</span>. We begin the subset construction from the start state of the NFA and continue until no new DFA nodes can be created.</p>
+<p>The node created by the <span class="math notranslate nohighlight">\(\epsilon\)</span>-closure on the start state of the NFA becomes the start state of the DFA. The accept states of the DFA are labelled by items of the form <span class="math notranslate nohighlight">\(A::=\beta\cdot\)</span>. Performing the subset construction on the NFA in Figure 2.3, we construct the DFA in Figure 2.4.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072325314.png" />
+A DFA is an NFA which has at most one transition from each state for each symbol and no transitions labelled <span class="math notranslate nohighlight">\(\epsilon\)</span>. It is customary to label each of the states of a DFA with a distinct <em>state number</em> which can then be used to uniquely identify the states. We shall always number the start state of a DFA <span class="math notranslate nohighlight">\(0\)</span>. The state labelled by the item <span class="math notranslate nohighlight">\(S^{\prime}::=S\cdot\)</span> is the final accepting state of the DFA and is drawn with a double circle.</p>
+<p><strong>Parse tables</strong></p>
+<p>It is often convenient to represent a DFA as a table where the rows are labelled by the DFA’s state numbers and the columns by the symbols used to label the transitions between states. In addition to the terminal and non-terminal symbols that label the transitions of the DFA, the LR parse tables also have a column for the special end-of-string symbol <span class="math notranslate nohighlight">\(\$\)</span>.</p>
+<p>So as to avoid including the rules used by a reduction in the parse table, we enumerate all of the alternates in the grammar with distinct integers. For example, we label the alternates in Grammar 2.7 in the following way.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072326643.png" /></p>
+<p>The parse table for Grammar 2.7 is constructed from its associated DFA in the following way. For each of the transitions labelled by a terminal, <span class="math notranslate nohighlight">\(x\)</span>, from a state <span class="math notranslate nohighlight">\(v\)</span> to a state <span class="math notranslate nohighlight">\(w\)</span>, a <em>shift</em> action, s<span class="math notranslate nohighlight">\(w\)</span> is added to row <span class="math notranslate nohighlight">\(v\)</span>, column <span class="math notranslate nohighlight">\(x\)</span>. If <span class="math notranslate nohighlight">\(x\)</span> is a non-terminal then a <em>goto</em> action, g<span class="math notranslate nohighlight">\(w\)</span>, is added to entry <span class="math notranslate nohighlight">\((v,x)\)</span> instead. For each state <span class="math notranslate nohighlight">\(v\)</span> that contains an item of the form <span class="math notranslate nohighlight">\((A::=\beta\cdot)\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the item’s associated rule number, r<span class="math notranslate nohighlight">\(N\)</span> is added to all entries of row <span class="math notranslate nohighlight">\(v\)</span> whose columns are labelled by terminals and <span class="math notranslate nohighlight">\(\$\)</span>. The accept action <em>acc</em> is added to the row labelled by the accept state of the DFA and column <span class="math notranslate nohighlight">\(\$\)</span>. The parse table for Grammar 2.7 is shown in Figure 2.2.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072326009.png" /></p>
+<p>Certain grammars generate parse tables with more than one action in a single entry. Such entries are called <em>conflicts</em>. There are two types of conflict that can occur: the first, referred to as a <em>shift/reduce</em> conflict, contains one shift and one or more reduce actions in an entry; the second, called a <em>reduce/reduce</em> conflict, has more than one reduce action in a single state. For example, consider Grammar 2.8 and the DFA shown in Figure 2.5. The associated parse table in Table 2.3 has a reduce/reduce conflict in state 5.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072326960.png" />
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072327833.png" /></p>
+</section>
+<section id="parsing-with-a-dfa">
+<h3>2.4.2 Parsing with a DFA<a class="headerlink" href="#parsing-with-a-dfa" title="Permalink to this heading">¶</a></h3>
+<p>We have seen that a DFA can be constructed from an NFA that accepts precisely all handles of a sentential form. It is straightforward to perform a deterministic traversal of this DFA to find a handle of a sentential form. In fact, we extend this traversal to determine if a string is in the language of the associated grammar.</p>
+<p>We begin by reading the input string one symbol at a time and performing a traversal through the DFA from its start state. If an accept state is reached for the input consumed, then the leftmost handle of the current sentential form has been located. At this point the parser replaces the string of symbols in the sentential</p>
+<p>form that match the right hand side of the handle’s production rule, with the non-terminal on the left hand side of the production rule. Parsing then resumes with the new sentential form from the start state of the DFA. If an accept state is reached and the start symbol is the only symbol in the sentential form, then the original string is accepted by the parser.</p>
+<p>The approach of repeatedly feeding the input string into the DFA is clearly inefficient. The initial portion of the input may be read several times before its handle is found. Consequently a stack is used to record the states reached during a traversal of a given string. When an accept state is reached and a handle <span class="math notranslate nohighlight">\(\gamma\)</span> has been located, the top <span class="math notranslate nohighlight">\(|\gamma|\)</span> states are popped off the stack and parsing resumes from the new state at the top of the stack. This prevents the initial portion of the input being repeatedly read.</p>
+<p>Next we discuss the LR parsing algorithm that uses a stack to perform a traversal of a DFA.</p>
+</section>
+<section id="lr-parsing">
+<h3>2.4.3 LR parsing<a class="headerlink" href="#lr-parsing" title="Permalink to this heading">¶</a></h3>
+<p>Knuth’s LR parser parses all LR grammars in at most linear time. An LR grammar is defined to be a context-free grammar for which a parse table without any conflicts can be constructed. Strictly speaking there are different forms of LR DFA, LR(0), SLR(1), LALR(1) and LR(1). For the moment we shall not specify which form we are using, the following discussion applies to all of them.</p>
+<p>An LR parser works by reading the input string one symbol at a time until it has located the leftmost handle <span class="math notranslate nohighlight">\(\gamma\)</span> of the input. At this point it reduces the handle by popping <span class="math notranslate nohighlight">\(|\gamma|\)</span> states off the stack and then pushing the goto state onto the stack. A parse is successful if all the input is consumed and the state on the top of the stack is the DFA’s accept state. The formal specification of the algorithm is as follows.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310080016175.png" /></p>
+<p>To demonstrate the operation of the LR parsing algorithm we trace the stack activity during the parse of the string <span class="math notranslate nohighlight">\(abc\)</span> with Grammar 2.7 and the parse table shown in Table 2.2. Figure 2.6 shows the contents of the stack after every action is performed in the parse.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072329707.png" /></p>
+<p>Although it is not strictly necessary to push the recognised symbols onto the stack, we do so here for clarity. However, it is now necessary to pop twice as many elements as the rule’s right hand side when a reduction is performed. In order to know when all the input has been consumed the special end-of-string symbol, <span class="math notranslate nohighlight">\(\$\)</span>, is added to the end of the input string.</p>
+<p>We begin the parse by pushing <span class="math notranslate nohighlight">\(\$\)</span> and the start state of the DFA onto the stack. Since no reduction is possible from state <span class="math notranslate nohighlight">\(0\)</span>, we read the first input symbol, <span class="math notranslate nohighlight">\(a\)</span>, and perform the shift to state <span class="math notranslate nohighlight">\(2\)</span> by pushing the <span class="math notranslate nohighlight">\(a\)</span> and then <span class="math notranslate nohighlight">\(2\)</span> onto the stack. From state <span class="math notranslate nohighlight">\(2\)</span> we read the next symbol, <span class="math notranslate nohighlight">\(b\)</span>, and perform the shift to state <span class="math notranslate nohighlight">\(5\)</span>. State <span class="math notranslate nohighlight">\(5\)</span> contains a reduction by rule <span class="math notranslate nohighlight">\(3\)</span>, <span class="math notranslate nohighlight">\(A::=b\)</span>, so we pop the top two symbols off the stack to reveal state <span class="math notranslate nohighlight">\(2\)</span>. The parse table contains the goto <span class="math notranslate nohighlight">\(g4\)</span> in entry <span class="math notranslate nohighlight">\((2,A)\)</span>, so we push <span class="math notranslate nohighlight">\(A\)</span> and then <span class="math notranslate nohighlight">\(4\)</span> onto the stack. We continue by pushing the next input symbol, <span class="math notranslate nohighlight">\(c\)</span>, and state <span class="math notranslate nohighlight">\(7\)</span> onto the stack for the action <span class="math notranslate nohighlight">\(s7\)</span> in state <span class="math notranslate nohighlight">\(4\)</span>. The reduce by rule <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(S::=aAc\)</span>, causes the top <span class="math notranslate nohighlight">\(6\)</span> elements to be popped and <span class="math notranslate nohighlight">\(S\)</span> and the goto state <span class="math notranslate nohighlight">\(1\)</span> to pushed onto the stack. Since the next input symbol is <span class="math notranslate nohighlight">\(\$\)</span> and the parse table contains the <span class="math notranslate nohighlight">\(acc\)</span> action in entry <span class="math notranslate nohighlight">\((1,\$)\)</span>, the string <span class="math notranslate nohighlight">\(abc\)</span> is accepted by the parser.</p>
+</section>
+<section id="parsing-with-lookahead">
+<h3>2.4.2 Parsing with lookahead<a class="headerlink" href="#parsing-with-lookahead" title="Permalink to this heading">¶</a></h3>
+<p>The DFA we have described up to now is called the LR(0) DFA. The LR parsing algorithm requires the parse table to be conflict free, but it is very easy to write a grammar which is not accepted by an LR(0) parser. The problem arises when there is a <em>conflict</em> (more than one action) in a parse table entry. For example, consider Grammar 2.8 and the associated parse table shown in Table 2.3.</p>
+<p>It turns out that for some grammars these types of conflicts can be resolved with the addition of lookahead symbols to items in the DFA. For the above example, the reduce/reduce conflict can be resolved with the use of just one symbol of lookahead to guide the parse. In the remainder of this section we discuss ways to utilise a single symbol of lookahead.</p>
+<p>For a non-terminal <span class="math notranslate nohighlight">\(A\)</span> we define a <em>lookahead set</em> to be any set of terminals which immediately follow an instance of <span class="math notranslate nohighlight">\(A\)</span> in the grammar. A reduction (<span class="math notranslate nohighlight">\(A::=\alpha\cdot\)</span>) is only applicable if the next input symbol, the <em>lookahead</em>, appears in the given lookahead set of <span class="math notranslate nohighlight">\(A\)</span>. In order to define useful lookahead sets we require the following definitions.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{ll}\mbox{\it first}_{\mbox{\bf T}}(x)&amp;=\{t\in\mbox{\bf T}\mid \mbox{for some string of symbols }\beta,\ x\stackrel{{*}}{{\Rightarrow}}t\beta\}\\ \mbox{\it first}(\epsilon)&amp;=\{\epsilon\}\\ \mbox{\it first}(x\gamma)&amp;=\left\{\begin{array}{ll}\mbox{\it first}_{\mbox {\bf T}}(x)\cup\mbox{\it first}(\gamma),&amp;\mbox{if }x\stackrel{{*}}{{\Rightarrow}}\epsilon\\ \mbox{\it first}_{\mbox{\bf T}}(x),&amp;\mbox{otherwise}\end{array}\right.\end{array}\end{split}\]</div>
+<p>For a non-terminal <span class="math notranslate nohighlight">\(A\)</span> we define</p>
+<div class="math notranslate nohighlight">
+\[\begin{array}{ll}\mbox{\it follow}(A)&amp;=\{t\mid t\in\mbox{\bf T}\mbox{ and }S\stackrel{{*}}{{\Rightarrow}}\beta At\alpha\}\end{array}\]</div>
+<p>If there is a derivation of the form <span class="math notranslate nohighlight">\(S\stackrel{{*}}{{\Rightarrow}}\beta A\)</span> then <span class="math notranslate nohighlight">\(\$\$\;\)</span> is also added to <span class="math notranslate nohighlight">\(\mbox{\it follow}(A)\)</span>. In particular, <span class="math notranslate nohighlight">\(\$\;\)</span><span class="math notranslate nohighlight">\(\in\mbox{\it follow}(S)\)</span>[SJ04].</p>
+<p>We now consider two types of LR DFA, SLR(1) and LR(1), that differ only in the lookahead sets that are calculated.</p>
+<section id="slr-1">
+<h4>SLR(1)<a class="headerlink" href="#slr-1" title="Permalink to this heading">¶</a></h4>
+<p>We call a lookahead set of a non-terminal <span class="math notranslate nohighlight">\(A\)</span><em>global</em> when it contains all terminals that immediately follow some instance of <span class="math notranslate nohighlight">\(A\)</span>. This is precisely the largest possible lookahead set for <span class="math notranslate nohighlight">\(A\)</span> and is exactly the set <span class="math notranslate nohighlight">\(\mbox{\it follow}(A)\)</span>. The SLR(1) DFA construction uses these global lookahead sets. A reduction is in row <span class="math notranslate nohighlight">\(h\)</span> and column <span class="math notranslate nohighlight">\(x\)</span> of the SLR(1) parse table if and only if (<span class="math notranslate nohighlight">\(A::=\alpha\cdot\)</span>) is in <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(x\in\mbox{\it follow}(A)\)</span>.</p>
+<p>Consider Grammar 2.8. The LR(0) parse table shown in Table 2.5 contains a reduce/reduce conflict in state 5. If instead we construct the SLR(1) DFA the corresponding parse table has no conflicts as can be seen in Figure 2.7 and Table 2.4.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072330655.png" />
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072330405.png" /></p>
+<p>However, it is easy to come up with a grammar that does not have an SLR(1) parse table. For example consider Grammar 2.9. The associated SLR(1) DFA contains a reduce/reduce conflict in state 7.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310102307507.png" /></p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072331263.png" />
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310072331498.png" /></p>
+<p><strong>LR(1)</strong></p>
+<p>Instead of calculating the global lookahead set we can further restrict the applicable reductions by calculating a more restricted lookahead set. We call a lookahead set <em>local</em> when it contains the terminals that can immediately follow a particular instance of a non-terminal.</p>
+<p>In the LR(1) DFA construction local lookahead sets are used in the following way. For a state containing an item of the form <span class="math notranslate nohighlight">\((B::=\alpha\cdot A\beta,\gamma)\)</span> the subsequent reduction for a rule defined by <span class="math notranslate nohighlight">\(A\)</span> contains the local lookahead set for this instance of <span class="math notranslate nohighlight">\(A\)</span> calculated by <span class="math notranslate nohighlight">\(\mathit{first}(\beta\gamma)\)</span>.</p>
+<p>For example, the LR(1) DFA of Grammar 2.9 eliminates the reduce/reduce conflict in state 7 of Figure 2.8 and Table 2.5 by restricting the lookahead set of the reduction <span class="math notranslate nohighlight">\((B::=b\cdot)\)</span> from <span class="math notranslate nohighlight">\(\{c,d\}\)</span> to <span class="math notranslate nohighlight">\(\{c\}\)</span>. This is because the item originates from <span class="math notranslate nohighlight">\((S::=a\cdot Bc,\$)\)</span> in state 2. The local lookahead set for the instance of <span class="math notranslate nohighlight">\(B\)</span> in <span class="math notranslate nohighlight">\(S::=aBc\)</span> is <span class="math notranslate nohighlight">\(\{c\}\)</span>. (See [1] for full details on LR(1) DFA construction.)</p>
+<p>The set of LR(1) grammars strictly includes the SLR(1) grammars. However, in many cases this extra power comes at the price of a potentially large increase in the number of states in the DFA. We discuss the size of the different parse tables in Chapter 10.</p>
+<p>The LR(1) DFA construction was defined in Knuth’s seminal paper on LR parsing [10], but at the time the LR(1) parse tables were too large to be practical. DeRemer later developed the SLR(1) and LALR(1) DFA’s in order to allow more sharing of nodes therefore reducing the size of the DFA [12].</p>
+<p><strong>LALR(1)</strong></p>
+<p>LALR(1) DFA’s are constructed by merging states in the LR(1) DFA whose items only differ by the lookahead set. The LALR(1) DFA for a grammar <span class="math notranslate nohighlight">\(\Gamma\)</span> contains the same number of states but fewer conflicts than the SLR(1) DFA for <span class="math notranslate nohighlight">\(\Gamma\)</span>.</p>
+<p><strong>Using <span class="math notranslate nohighlight">\(k\)</span> symbols of lookahead</strong></p>
+<p>Although it is possible to increase the amount of lookahead that a parser uses, it is not clear that the extra work involved is justified. The automata increase in size very quickly, and for every LR(k) parser it is easy to write a grammar which requires <span class="math notranslate nohighlight">\(k+1\)</span> amount of lookahead.</p>
+</section>
+</section>
+</section>
+<section id="summary">
+<h2>2.5 Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<p>This chapter has presented the theory and techniques that are needed to build an LR parser. LR parsers are the most powerful deterministic parsing technique, but despite being used to define the syntax of many modern programming languages, it is easy to write a grammar which is not LR(1). The next chapter paints a picture of the landscape of some of the important generalised parsing techniques (that can be applied to all context-free grammars) developed over the last 40 years.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Although unknown to Western world until recently, Pánini, an Indian scholar, produced a formal grammar for Sanskrit between 350BC and 250BC [Sik97].</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1%20Introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3%20The%20development%20of%20generalised%20parsing.html" class="btn btn-neutral float-right" title="3. The development of generalised parsing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, xrtero.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

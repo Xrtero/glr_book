@@ -1,0 +1,1 @@
+/Users/xrteroxiao/Documents/notes/compiler/glr/translate/7 Reduction Incorporated Generalised LR parsing.md
