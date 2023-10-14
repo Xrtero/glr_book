@@ -276,14 +276,11 @@ The DFA we have described up to now is called the LR(0) DFA. The LR parsing algo
 It turns out that for some grammars these types of conflicts can be resolved with the addition of lookahead symbols to items in the DFA. For the above example, the reduce/reduce conflict can be resolved with the use of just one symbol of lookahead to guide the parse. In the remainder of this section we discuss ways to utilise a single symbol of lookahead.
 
 For a non-terminal $A$ we define a _lookahead set_ to be any set of terminals which immediately follow an instance of $A$ in the grammar. A reduction ($A::=\alpha\cdot$) is only applicable if the next input symbol, the _lookahead_, appears in the given lookahead set of $A$. In order to define useful lookahead sets we require the following definitions.
-
-$$\begin{array}{ll}\mbox{\it first}_{\mbox{\bf T}}(x)&=\{t\in\mbox{\bf T}\mid \mbox{for some string of symbols }\beta,\ x\stackrel{{*}}{{\Rightarrow}}t\beta\}\\ \mbox{\it first}(\epsilon)&=\{\epsilon\}\\ \mbox{\it first}(x\gamma)&=\left\{\begin{array}{ll}\mbox{\it first}_{\mbox {\bf T}}(x)\cup\mbox{\it first}(\gamma),&\mbox{if }x\stackrel{{*}}{{\Rightarrow}}\epsilon\\ \mbox{\it first}_{\mbox{\bf T}}(x),&\mbox{otherwise}\end{array}\right.\end{array}$$
+![image.png](https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310141626525.png)
 
 For a non-terminal $A$ we define
-
-$$\begin{array}{ll}\mbox{\it follow}(A)&=\{t\mid t\in\mbox{\bf T}\mbox{ and }S\stackrel{{*}}{{\Rightarrow}}\beta At\alpha\}\end{array}$$
-
-If there is a derivation of the form $S\stackrel{{*}}{{\Rightarrow}}\beta A$ then $\$\$\;$ is also added to $\mbox{\it follow}(A)$. In particular, $\$\;$$\in\mbox{\it follow}(S)$[SJ04].
+![image.png](https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310141626828.png)
+If there is a derivation of the form $S\stackrel{{*}}{{\Rightarrow}}\beta A$ then $\$$ is also added to $\mbox{\it follow}(A)$. In particular, $\$\;$$\in\mbox{\it follow}(S)$[SJ04].
 
 We now consider two types of LR DFA, SLR(1) and LR(1), that differ only in the lookahead sets that are calculated.
 
