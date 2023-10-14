@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Introduction &mdash; Generalised LR parsing algorithms  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Recognition and parsing" href="2%20%20Recognition%20and%20parsing.html" />
+    <link rel="prev" title="Generalised LR parsing algorithms" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Generalised LR parsing algorithms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">1.1 Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributions">1.2 Contributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#outline-of-thesis">1.3 Outline of thesis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2%20%20Recognition%20and%20parsing.html">2. Recognition and parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3%20The%20development%20of%20generalised%20parsing.html">3. The development of generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4%20Generalised%20LR%20parsing.html">4. Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5%20Right%20Nulled%20Generalised%20LR%20parsing.html">5. Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6%20Binary%20Right%20Nulled%20Generalised%20LR%20parsing.html">6.Binary Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7%20Reduction%20Incorporated%20Generalised%20LR%20parsing.html">7.Reduction Incorporated Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8%20Other%20approaches%20to%20generalised%20parsing.html">8 Other approaches to generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9%20Some%20generalised%20parser%20generators.html">9. Some generalised parser generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Experimental%20investigation.html">10. Experimental investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11%20Concluding%20remarks.html">11. Concluding remarks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Generalised LR parsing algorithms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1 Introduction.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<section id="motivation">
+<h2>1.1 Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
+<p>Most programming languages are implemented using almost deterministic context-free grammars and an LALR(1) parser generator such as Yacc, or GNU Bison. This approach to language development has been accepted for a long time and consequently many people believe that research into parsing is ‘done’. This view is somewhat surprising given that there are still many important questions that remain unanswered. For example, the following two problems set by Knuth in his seminal paper [12] are still unsolved:</p>
+<ul class="simple">
+<li><p>Are there general parsing methods for which a linear parsing time can be guaranteed for all grammars?</p></li>
+<li><p>Are there particular grammars for which no conceivable parsing method will be able to find one parse of each string in the language with running time at worst linearly proportional to the length of the string?</p></li>
+</ul>
+<p>Clearly a lot more research needs to be carried out before we can honestly claim that parsing is ‘done’. This thesis makes a significant contribution to <em>generalised</em> parsing theory, specifically focusing on Tomita’s GLR technique and its extensions.</p>
+<p>A generalised parser is a parser that is capable of parsing strings for any context-free grammar. Although the first generalised parsing algorithms were published as far back as the 1960s, they have not generally been used in practice due to their relatively high runtime costs. The relentless improvement of computing power and storage, however, has seen interest in generalised parsing techniques resurface.</p>
+<p>One of the main reasons behind the increased usage of generalised parsing is the popularity of languages like C++ that are difficult to parse using the standard deterministic techniques. Another is the increasing importance of software re-engineering tools that perform transformations of legacy software. Often this type of software is written in a programming language whose grammar is ambiguous.</p>
+<p>Despite this increase in use, generalised parsers are still relatively inefficient; the most efficient generalised parsing algorithm to date displays <span class="math notranslate nohighlight">\(O(n^{2.376})\)</span> complexity. Although it is believed that linear time generalised parsers are unlikely to exist, work should continue on improving the efficiency of generalised parsers. Unfortunately, the existing literature lacks a comprehensive, comparative analysis of generalised parsing techniques. This hinders the understanding of existing techniques and hampers the development of new approaches.</p>
+</section>
+<section id="contributions">
+<h2>1.2 Contributions<a class="headerlink" href="#contributions" title="Link to this heading">¶</a></h2>
+<p>The main contributions of this thesis are the description of the new Binary Right Nulled GLR (BRNGLR) parsing algorithm, the comparative analysis of existing GLR techniques and the development of the Parser Animation Tool (PAT).</p>
+<p>PAT is a Java application that graphically displays and animates the operation of GLR parsing algorithms and collects statistical data that abstracts their performance. I implemented six different generalised parsing algorithms and several variants of each approach. The implementations closely follow the algorithms’ theoretical description in the thesis. I used PAT to collect statistical data for each of the implemented algorithms and compiled a comparative analysis between the different approaches. This analysis indicates that the performance of parsing techniques adopted by several existing tools can be significantly improved by incorporating simple modifications described in this thesis.</p>
+<p>The <em>BRNGLR</em> algorithm is a new parser that displays cubic worst case complexity. Unlike other approaches that achieve cubic complexity the BRNGLR algorithm does not require its grammars to be modified and it constructs a representation of all derivations (during a parse) in at most cubic space. Although the initial idea of the algorithm is due to Scott, I was heavily involved throughout the development of the algorithm. In particular, I developed the prototype of <em>BRNGLR</em> in PAT which was used to analyse the algorithms behaviour and test several optimisations.</p>
+<p>In summary, the main contributions of this thesis are as follows: the presentation of the BRNGLR algorithm; the comprehensive analysis and description of existing GLR algorithms; new results which show that the techniques adopted by several existing tools can be significantly improved; and the Parser Animation Tool which provides a way of repeating and understanding the experiments and algorithms presented in this thesis.</p>
+<p>Several of the results developed in this thesis have been subsequently published. The relevant papers are listed in the bibliography [JSE04a, JSE04b, JSE04c, JSE].</p>
+</section>
+<section id="outline-of-thesis">
+<h2>1.3 Outline of thesis<a class="headerlink" href="#outline-of-thesis" title="Link to this heading">¶</a></h2>
+<p>The thesis is split into four parts. Part I is made up of three chapters and provides the reader with the theory that is required in the rest of the thesis. Chapter 2 focuses on theory related to the specification and parsing of computer languages. Chapter 3 paints a picture of the major developments in generalised parsing and discusses relations between the various techniques. Chapter 4 introduces Tomita’s GLR parsing algorithm and Farshi’s later correction. A detailed discussion is given of both approaches highlighting some of their drawbacks.</p>
+<p>Part II introduces three recent algorithms that use a variety of techniques to improve on the efficiency of the traditional GLR parsing algorithm. Chapter 5 describes the RNGLR algorithm that corrects Tomita’s original algorithm by redefining the reduce action in the parse table. In addition to recasting the algorithm in terms of Rekers’ SPPF representation, some modifications are proposed which improve its efficiency. Chapter 6 introduces the BRNGLR algorithm; a cubic-time parser based on the RNGLR algorithm that does not require any modification to be made to the grammar. Chapter 7 presents the RIGLR algorithm that attempts to improve the efficiency of a GLR algorithm by reducing the amount of stack activity. Chapter 8 discusses other work that has contributed to the development of generalised parsing, and relates them to the techniques described in this thesis.</p>
+<p>Part III contains two chapters. Chapter 9 discusses some of the major applications of GLR and backtracking parsing techniques. As part of the work for this thesis, the algorithms discussed have been implemented in the Parser Animation Tool (PAT). This tool has been used to investigate the practical and theoretical strengths and weaknesses of the algorithms. In parallel, the GTB tool has also been developed. Together, PAT and GTB have been used to run the algorithms on grammars for Pascal, C, Cobol and various smaller test grammars. The results are presented and discussed in Chapter 10.</p>
+<p>Part IV contains one chapter that concludes the thesis and maps out possible future work.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Generalised LR parsing algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2%20%20Recognition%20and%20parsing.html" class="btn btn-neutral float-right" title="2. Recognition and parsing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, xrtero.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11. Concluding remarks &mdash; Generalised LR parsing algorithms  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="10. Experimental investigation" href="10%20Experimental%20investigation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Generalised LR parsing algorithms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1%20Introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2%20%20Recognition%20and%20parsing.html">2. Recognition and parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3%20The%20development%20of%20generalised%20parsing.html">3. The development of generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4%20Generalised%20LR%20parsing.html">4. Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5%20Right%20Nulled%20Generalised%20LR%20parsing.html">5. Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6%20Binary%20Right%20Nulled%20Generalised%20LR%20parsing.html">6.Binary Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7%20Reduction%20Incorporated%20Generalised%20LR%20parsing.html">7.Reduction Incorporated Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8%20Other%20approaches%20to%20generalised%20parsing.html">8 Other approaches to generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9%20Some%20generalised%20parser%20generators.html">9. Some generalised parser generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Experimental%20investigation.html">10. Experimental investigation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Concluding remarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#conclusions">11.1 Conclusions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-work">11.2 Future work</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resolution-of-ambiguities">Resolution of ambiguities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#investigating-the-effect-of-the-additional-gss-nodes-created-by-the-brnglr-algorithm">Investigating the effect of the additional GSS nodes created by the BRNGLR algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-riglr-algorithm-to-improve-the-performance-of-scannerless-parsers">Using the RIGLR algorithm to improve the performance of scannerless parsers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-reporting-in-glr-parsers">Error reporting in GLR parsers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Generalised LR parsing algorithms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">11. Concluding remarks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/11 Concluding remarks.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="concluding-remarks">
+<h1>11. Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Link to this heading">¶</a></h1>
+<section id="conclusions">
+<h2>11.1 Conclusions<a class="headerlink" href="#conclusions" title="Link to this heading">¶</a></h2>
+<p>Generalised parsing is an important area of research. The incorporation of a GLR mode in GNU Bison, and the emergence of tools such as the Asf+Sdf Meta-Environment and Stratego/XT highlight the increasing practical importance of generalised parsing techniques. Unfortunately the generalised parsing algorithms used by such tools are still relatively inefficient. Although straightforward optimisations can significantly improve their performance, the literature lacks a comprehensive analysis of the different techniques, which hinders the understanding and improvement of existing approaches and hampers the development of new ideas.</p>
+<p>This thesis advances the study of generalised parsing algorithms by providing the following contributions: a comprehensive, comparative analysis of generalised parsing techniques; a new tool, the Parser Animation Tool (PAT), which aids the understanding of the different techniques and can be used to compare their performance; and the BRNGLR algorithm, a new algorithm that displays cubic complexity in the worst case.</p>
+<p>The theoretical treatment of the different generalised parsing techniques presented in this thesis is supported by the PAT. The implementation of the algorithms in PAT closely follows their theoretical description. In addition to graphically animating the algorithms’ operation PAT collects statistical data which has been used to analyse their performance in Chapter 10. The main results of this work are as follows:</p>
+<ul class="simple">
+<li><p>Both variants of Farshi’s algorithms perform poorly when compared to the other techniques.</p></li>
+<li><p>The performance of Farshi’s algorithm is significantly improved by implementing the straightforward optimisation highlighted in Chapter 4.</p></li>
+<li><p>The RNGLR algorithm performs very well in comparison to all the other algorithms for all experiments.</p></li>
+<li><p>The BRNGLR algorithm performs an order of magnitude fewer edge visits than the RNGLR algorithm during a parse of a grammar which triggers worst case behaviour for both algorithms.</p></li>
+<li><p>The performance of the BRNGLR algorithm also compares very well to the RNGLR algorithm for the programming language parses.</p></li>
+<li><p>The performance of the RIGLR algorithm compares well to the BRNGLR and RNGLR algorithms. Additionally there is an order of magnitude reduction in the size of the structures constructed during a parse by the RIGLR algorithm when compared to the RNGLR and BRNGLR algorithms. Unfortunately the size of the RCA’s for the programming language grammars is impractically large.</p></li>
+</ul>
+<p>All of the tools which use a GLR parser that were inspected as part of this thesis implement the naive version of Farshi’s algorithm. As the results in this thesis show, a significant improvement in performance can be achieved by making a relatively simple modification to this algorithm.</p>
+</section>
+<section id="future-work">
+<h2>11.2 Future work<a class="headerlink" href="#future-work" title="Link to this heading">¶</a></h2>
+<p>The contributions of this thesis advance the study of generalised parsing, but there are still several areas that can be significantly improved by further research. In the remainder of this chapter we briefly discuss some possibilities for future research in the field.</p>
+<section id="resolution-of-ambiguities">
+<h3>Resolution of ambiguities<a class="headerlink" href="#resolution-of-ambiguities" title="Link to this heading">¶</a></h3>
+<p>Theoretically speaking it is desirable for a generalised parser to produce all possible derivations of a parse, and the SPPF representation provides a relatively efficient structure to do this with. The problem, however, is that in practice most applications only want their parsers to output one derivation and extracting the desired parse tree from a forest is not usually straight forward. Ambiguities are often difficult to understand and modifying the grammar so as to remove them can result in more ambiguities being introduced and a less intuitive grammar.</p>
+<p>New techniques need to be developed and incorporated into generalised parsers that simplify the selection of a single parse tree from a forest. The work done on disambiguation filtering [23] in scannerless GLR parsing is an interesting approach. The incorporation of such techniques in the existing GLR algorithms should not be difficult.</p>
+</section>
+<section id="investigating-the-effect-of-the-additional-gss-nodes-created-by-the-brnglr-algorithm">
+<h3>Investigating the effect of the additional GSS nodes created by the BRNGLR algorithm<a class="headerlink" href="#investigating-the-effect-of-the-additional-gss-nodes-created-by-the-brnglr-algorithm" title="Link to this heading">¶</a></h3>
+<p>The theoretical analysis of the BRNGLR algorithm has shown that, in the worst case, it is asymptotically better than the existing GLR algorithms. Furthermore, the results in Chapter 10 indicate that it also performs well in practice. However, it would be interesting to investigate the actual runtime costs that are contributed by the additional nodes created in the GSS. Could the performance of the algorithm be improved in some cases by compromising its worst case complexity and only selectively creating additional nodes?</p>
+</section>
+<section id="using-the-riglr-algorithm-to-improve-the-performance-of-scannerless-parsers">
+<h3>Using the RIGLR algorithm to improve the performance of scannerless parsers<a class="headerlink" href="#using-the-riglr-algorithm-to-improve-the-performance-of-scannerless-parsers" title="Link to this heading">¶</a></h3>
+<p>Scannerless (S)GLR parsers do not use a separate scanner to divide the input string into lexical tokens. Instead they incorporate the lexical analysis phase into the parser. Although this approach has its advantages, one of its main drawbacks is that it can be less efficient; “scanning with a finite automaton has a lower complexity than parsing with a stack” [20, p.36]. Perhaps the efficiency of SGLR parsers can be improved by partially incorporating the techniques developed for the RIGLR algorithm.</p>
+</section>
+<section id="error-reporting-in-glr-parsers">
+<h3>Error reporting in GLR parsers<a class="headerlink" href="#error-reporting-in-glr-parsers" title="Link to this heading">¶</a></h3>
+<p>A common complaint against bottom-up parsing techniques in general, is what is considered to be their complicated error reporting. Deterministic bottom-up parsers such as Yacc often refer to parse table actions when a parse error is encountered. Although a considerable amount of research has been done on improving the error reporting for LR parsers, relatively little work has been done for GLR parsers.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="10%20Experimental%20investigation.html" class="btn btn-neutral float-left" title="10. Experimental investigation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, xrtero.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

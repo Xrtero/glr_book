@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8 Other approaches to generalised parsing &mdash; Generalised LR parsing algorithms  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Some generalised parser generators" href="9%20Some%20generalised%20parser%20generators.html" />
+    <link rel="prev" title="7.Reduction Incorporated Generalised LR parsing" href="7%20Reduction%20Incorporated%20Generalised%20LR%20parsing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Generalised LR parsing algorithms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1%20Introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2%20%20Recognition%20and%20parsing.html">2. Recognition and parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3%20The%20development%20of%20generalised%20parsing.html">3. The development of generalised parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4%20Generalised%20LR%20parsing.html">4. Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5%20Right%20Nulled%20Generalised%20LR%20parsing.html">5. Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6%20Binary%20Right%20Nulled%20Generalised%20LR%20parsing.html">6.Binary Right Nulled Generalised LR parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7%20Reduction%20Incorporated%20Generalised%20LR%20parsing.html">7.Reduction Incorporated Generalised LR parsing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8 Other approaches to generalised parsing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mark-jan-nederhof-and-janos-j-sarbo">8.1 Mark-Jan Nederhof and Janos J. Sarbo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#james-r-kipps">8.2 James R. Kipps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kipps-o-n-3-recognition-algorithm">Kipps’ <span class="math notranslate nohighlight">\(O(n^{3})\)</span> recognition algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jay-earley">8.3 Jay Earley</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#earley-s-algorithm">Earley’s algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bernard-lang">8.4 Bernard Lang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#klaas-sikkel">8.5 Klaas Sikkel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="9%20Some%20generalised%20parser%20generators.html">9. Some generalised parser generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Experimental%20investigation.html">10. Experimental investigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11%20Concluding%20remarks.html">11. Concluding remarks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Generalised LR parsing algorithms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">8 Other approaches to generalised parsing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/8 Other approaches to generalised parsing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="other-approaches-to-generalised-parsing">
+<h1>8 Other approaches to generalised parsing<a class="headerlink" href="#other-approaches-to-generalised-parsing" title="Link to this heading">¶</a></h1>
+<p>This chapter looks at other approaches to generalised parsing and compares them to the techniques studied in detail in this thesis.</p>
+<section id="mark-jan-nederhof-and-janos-j-sarbo">
+<h2>8.1 Mark-Jan Nederhof and Janos J. Sarbo<a class="headerlink" href="#mark-jan-nederhof-and-janos-j-sarbo" title="Link to this heading">¶</a></h2>
+<p>Tomita’s Algorithm 2 can fail to terminate when parsing strings in hidden-left recursive grammars (see Chapter 4). Farshi extends Tomita’s Algorithm 1 to parse all grammars by introducing cycles into the GSS and performing extra searching during parsing. In [10], Nederhof and Sarbo present a new type of automaton, the <span class="math notranslate nohighlight">\(\epsilon\)</span>-LR DFA, that allows Tomita’s Algorithm 2 to correctly parse strings in all context-free grammars. This section provides an overview of their approach.</p>
+<p>It is claimed in [10] that the cycles in the GSS, introduced by Farshi, complicate garbage collection and prevent the use of memo-functions presented by Leermakers et. al., [11]. Since it is hidden-left recursive rules that cause Tomita’s Algorithm 2 to fail to terminate, a straightforward approach to deal with such grammars is to remove any non-terminals that derive <span class="math notranslate nohighlight">\(\epsilon\)</span> by transforming them with the standard <span class="math notranslate nohighlight">\(\epsilon\)</span>-removal algorithm [1]. Obviously this also removes any hidden-left recursion. Of course, if all the <span class="math notranslate nohighlight">\(\epsilon\)</span>-rules are removed, the grammar will not contain any right nullable rules either, so Tomita’s Algorithm 1 can also be used correctly.</p>
+<p>The drawback of the standard <span class="math notranslate nohighlight">\(\epsilon\)</span>-removal process is that it can significantly increase the number of grammar rules and hence the size of the LR DFA. In principle, since there are more DFA states the GSS may be bigger, so the run time could be affected as well. As far as we know there have been no studies on the comparative GSS size for grammars before and after <span class="math notranslate nohighlight">\(\epsilon\)</span> removal.</p>
+<p>In an attempt to reduce the size of the automaton, certain states in the automaton are merged in a similar way to Pager’s [12] parse table compression technique.</p>
+<p>For example, consider Grammar 8.1 and its associated DFA shown in Figure 8.1.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081738754.png" />
+By transforming Grammar 8.1 with the <span class="math notranslate nohighlight">\(\epsilon\)</span>-removal algorithm, Grammar 8.2 is constructed. For the purpose of clarity, we have used non-terminals of the form <span class="math notranslate nohighlight">\([A]\)</span> to indicate that the non-terminal <span class="math notranslate nohighlight">\(A\)</span> has been removed from the grammar by the <span class="math notranslate nohighlight">\(\epsilon\)</span>-removal transformation.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081739517.png" /></p>
+<p>To reduce the number of states in the DFA of a grammar that has had the <span class="math notranslate nohighlight">\(\epsilon\)</span>-removal transformation applied, we can incorporate the removal of <span class="math notranslate nohighlight">\(\epsilon\)</span>-rules into the closure function used during the construction of the DFA. We consider rules that are derived from the same <em>basic</em> item to be equivalent. For example, in Figure 8.2 the items <span class="math notranslate nohighlight">\((A::=Bc\cdot)\)</span> and <span class="math notranslate nohighlight">\((A::=[B]c\cdot)\)</span> are considered to be the same and hence states 5 and 7 can be merged and a new edge, labelled <span class="math notranslate nohighlight">\(c\)</span>, added from state 5.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081739432.png" /></p>
+<p>Although the merging of DFA states in this way can reduce the number of states, it breaks one of the fundamental properties of DFA’s that are used by parsers - if a state that contains a reduction action is reached, then it is guaranteed that the reduction is applicable. As a result, when a reduction is performed by a parser that uses the <span class="math notranslate nohighlight">\(\epsilon\)</span>-LR DFA, it is necessary to check each of the symbols that are popped off the stack, to ensure that the reduction is applicable at that point of the parse.</p>
+<p>For example, consider the parse of the string <span class="math notranslate nohighlight">\(abcd\)</span> using the <span class="math notranslate nohighlight">\(\epsilon\)</span>-LR(0) DFA in Figure 8.3. We begin by creating the node, <span class="math notranslate nohighlight">\(v_{0}\)</span>, labelled by the start symbol of the DFA and then perform two consecutive shifts for the first two input symbols <span class="math notranslate nohighlight">\(ab\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081739274.png" /></p>
+<p>From state 5 we can perform a reduce for rule <span class="math notranslate nohighlight">\(B::=b\)</span>, so we trace back a path of length 1 from <span class="math notranslate nohighlight">\(v_{2}\)</span>, checking that the symbol on the edge matches the rule, to state <span class="math notranslate nohighlight">\(v_{1}\)</span> and create the new node, <span class="math notranslate nohighlight">\(v_{3}\)</span> labelled 4.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081740578.png" /></p>
+<p>At this point we can perform the shift on <span class="math notranslate nohighlight">\(c\)</span> from state 4 in the DFA to state 7. However, because of the previous reduction the shift is now also applicable from <span class="math notranslate nohighlight">\(v_{2}\)</span>. We create the new node <span class="math notranslate nohighlight">\(v_{4}\)</span> and add edges to both <span class="math notranslate nohighlight">\(v_{3}\)</span> and <span class="math notranslate nohighlight">\(v_{2}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081740534.png" /></p>
+<p>From state 7 there is the reduction, <span class="math notranslate nohighlight">\(A::=Bc\)</span>. However, recall that state 7 was created by merging states 5 and 8 in the DFA in Figure 8.2, so there are two reductions that are valid at this point. One where <span class="math notranslate nohighlight">\(B\Rightarrow\epsilon\)</span> and the other where <span class="math notranslate nohighlight">\(B\Rightarrow b\)</span>. Therefore we trace back two types of path; one of length 1, where we can pop <span class="math notranslate nohighlight">\(c\)</span> off the stack and another of length 2, where we pop <span class="math notranslate nohighlight">\(Bc\)</span>. Consequently we construct the GSS show below.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081740958.png" /></p>
+<p>Next we can read the final input symbol <span class="math notranslate nohighlight">\(d\)</span> and perform the shift from state 3 to state 6. We create the new node <span class="math notranslate nohighlight">\(v_{6}\)</span> and create the edge from <span class="math notranslate nohighlight">\(v_{6}\)</span> to <span class="math notranslate nohighlight">\(v_{5}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081740197.png" /></p>
+<p>From state 6 we perform the reduction <span class="math notranslate nohighlight">\(S::=aAd\)</span> by tracing back paths of length 3 from <span class="math notranslate nohighlight">\(v_{6}\)</span>. However, although three different paths can be traversed, (<span class="math notranslate nohighlight">\([v_{6},v_{5},v_{2},v_{1}]\)</span>, <span class="math notranslate nohighlight">\([v_{6},v_{5},v_{3},v_{1}]\)</span>, <span class="math notranslate nohighlight">\([v_{6},v_{5},v_{1},v_{0}]\)</span>) only one is applicable because of the symbols labeling the traversed edges. The final GSS is shown below.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081740281.png" /></p>
+<p>Another solution, which only causes a quadratic increase in the number of rules, is to use the hidden-left recursion removal algorithm. However, a grammar that has been transformed in this way can only be parsed by Tomita’s Algorithm 2, since Algorithm 1 has a problem with right nullable rules. As we shall see in Chapter 10 Algorithm 2 is less efficient than Algorithm 1 (or indeed RNGLR).</p>
+</section>
+<section id="james-r-kipps">
+<h2>8.2 James R. Kipps<a class="headerlink" href="#james-r-kipps" title="Link to this heading">¶</a></h2>
+<p>Tomita’s Algorithm 2 can fail to terminate when parsing strings in hidden-left recursive grammars (see Chapter 4). In [10], Kipps shows that the worst case asymptotic complexity of the algorithm, for grammars without hidden-left recursion, is. However, his proof does not take this into consideration and hence must be incorrect. None of the grammars used in the experimental section of [13] contain hidden-left recursion and hence successfully terminate.</p>
+<p>Kipps makes a modification to Tomita’s algorithm which, he claims, makes it achieve worst case time complexity for all context-free grammars. Kipps changes the formal definition used by Tomita in [14]. The Reducer and are combined into one function and the new Ancestors function is used to abstract the search for target nodes of a reduction. Also, instead of defining the algorithm to create sub-frontiers for nullable reductions the concept of a clone vertex is introduced.</p>
+<p>Although the notation and layout of the algorithm presented in [13] differs somewhat from Tomita’s Algorithm 2 we believe them to be equivalent. Kipps’ algorithm also fails to terminate on grammars with hidden-left recursion and thus cannot be. The proof that his algorithm is cubic is flawed in the same way that his proof that Tomita’s algorithm is.</p>
+<p>Although Kipps’ proof is flawed the observations on the root of the algorithms complexity are valid - it is the Ancestors function that traces back reduction paths during a reduction that contributes to the complexity of the algorithm. Only the Ancestors function uses steps. However, Ancestors can only ever return at most nodes and there are at most nodes between a node in and its ancestors. So, for steps to be performed in Ancestors some paths must be traversed more than once. Kipps improves the performance of Tomita’s algorithm by constructing an <em>ancestors table</em> that allows the fast look-up of nodes at a distance of.</p>
+<p>In Kipps’ algorithm a state node is represented as a triple where is the level the state is in, is the state number labeling the node and is the ancestor field that stores the portion of the ancestor table for. In the algorithm the ancestor field of a node consists of sets of tuples where are the set of ancestor (or target) nodes at a length of from node. In our example we draw the GSS nodes with a two dimensional ancestor table, representing the portion of the ancestor table for the node, on the left and the state number on the right. We do not label the level in the node since it is clear by the position of the node. To highlight how the algorithm operates we use dotted arrows for the edges added by the Ancestors function and solid arrows to represent the final edge of a reduction.</p>
+<p>The algorithm dynamically generates the ancestor table as reductions are performed.</p>
+<p>Before we present the formal specification of Kipps’ algorithm we demonstrate its operation using an example. Recall Grammar 6.5 and its associated DFA in Figure 6.6, shown on page 6.6. To parse the string we begin by creating the new node in. Since there is a shift to state from state on the next input symbol <span class="math notranslate nohighlight">\(a\)</span>, we create the new node <span class="math notranslate nohighlight">\(v_{1}\)</span>, labelled 2, in <span class="math notranslate nohighlight">\(U_{1}\)</span>. We add an entry in the ancestor field of <span class="math notranslate nohighlight">\(v_{1}\)</span> to show that <span class="math notranslate nohighlight">\(v_{0}\)</span> is an ancestor of <span class="math notranslate nohighlight">\(v_{1}\)</span> at a distance of one. We represent this in the diagram by adding an edge from the ancestor table of <span class="math notranslate nohighlight">\(v_{1}\)</span> in position 1 to <span class="math notranslate nohighlight">\(v_{0}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081741997.png" /></p>
+<p>We continue in this way shifting the next three input symbols and creating the nodes <span class="math notranslate nohighlight">\(v_{2},v_{3},v_{4}\)</span> labelled 3,4 and 5 respectively.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081741175.png" /></p>
+<p>Processing <span class="math notranslate nohighlight">\(v_{4}\)</span> we find a reduce/reduce conflict in state 5 for the current lookahead symbol <span class="math notranslate nohighlight">\(\$\)</span>. First we perform the reduction on rule <span class="math notranslate nohighlight">\(S::=abcd\)</span> by calling the Reducer function. We find the target node of the reduction by calling the Ancestors function. Since there is not a node on a distance of 4 from <span class="math notranslate nohighlight">\(v_{4}\)</span>, we find node <span class="math notranslate nohighlight">\(v_{3}\)</span> at a distance of 1 and call the Ancestors function recursively from <span class="math notranslate nohighlight">\(v_{3}\)</span> and a length of three. We repeat the recursion until the length reaches 0 at which point we return the node reached. As the recursion returns to each node on the path between <span class="math notranslate nohighlight">\(v_{4}\)</span> and <span class="math notranslate nohighlight">\(v_{0}\)</span> we update the ancestor table by adding an edge to the returned target node of the reduction that is getting passed back through the recursion.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081741476.png" /></p>
+<p>The Ancestors function returns <span class="math notranslate nohighlight">\(v_{0}\)</span> as the node at a distance of 4 from <span class="math notranslate nohighlight">\(v_{4}\)</span>. Since no node exists in the frontier of the GSS that is labelled by the goto state of the reduction we create the new node <span class="math notranslate nohighlight">\(v_{5}\)</span> with an edge from position one in the ancestor table to <span class="math notranslate nohighlight">\(v_{0}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081741671.png" /></p>
+<p>We continue by processing the second reduction, <span class="math notranslate nohighlight">\(D::=d\)</span>, of the reduce/reduce conflict encountered in <span class="math notranslate nohighlight">\(v_{4}\)</span>. The reduction is of length one and since there is already an edge in the ancestor table of <span class="math notranslate nohighlight">\(v_{4}\)</span> the Ancestors function returns <span class="math notranslate nohighlight">\(v_{3}\)</span> without performing any recursion. We create the new node <span class="math notranslate nohighlight">\(v_{6}\)</span>, labelled 6, in <span class="math notranslate nohighlight">\(U_{4}\)</span> and add an edge in its ancestor table to <span class="math notranslate nohighlight">\(v_{3}\)</span> in position one.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081742476.png" /></p>
+<p>When we process <span class="math notranslate nohighlight">\(v_{5}\)</span> we find the accept action in its associated parse table entry. However, since <span class="math notranslate nohighlight">\(v_{6}\)</span> has not yet been processed, the termination of the parse is delayed. Processing <span class="math notranslate nohighlight">\(v_{6}\)</span> we find the reduction on rule <span class="math notranslate nohighlight">\(S::=abcD\)</span>. We use the Ancestors function to find the target node of the reduction on a path of length four from <span class="math notranslate nohighlight">\(v_{6}\)</span>. Since we have already performed a reduction from <span class="math notranslate nohighlight">\(v_{4}\)</span> that shares some of the path used by this reduction, the ancestor table in <span class="math notranslate nohighlight">\(v_{3}\)</span> contains an edge in position 3 to <span class="math notranslate nohighlight">\(v_{0}\)</span>. Instead of continuing the recursion, the Ancestors function returns <span class="math notranslate nohighlight">\(v_{0}\)</span> as the node at the end of the path of length four from <span class="math notranslate nohighlight">\(v_{6}\)</span> without tracing the entire reduction path.</p>
+<p>Since <span class="math notranslate nohighlight">\(v_{5}\)</span> is labelled by the goto state of the reduction and has an edge to the target node <span class="math notranslate nohighlight">\(v_{0}\)</span>, the GSS remains unchanged and the parse terminates in success.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081742120.png" /></p>
+<section id="kipps-o-n-3-recognition-algorithm">
+<h3>Kipps’ <span class="math notranslate nohighlight">\(O(n^{3})\)</span> recognition algorithm<a class="headerlink" href="#kipps-o-n-3-recognition-algorithm" title="Link to this heading">¶</a></h3>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081750841.png" />
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081751228.png" />
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081751960.png" /></p>
+<p>In a similar way to the BRNGLR algorithm Kipps’ approach trades space for time, but the two algorithms use different techniques to achieve this. In the conclusion of his paper Kipps admits that although his approach produces an asymptotically more efficient parser, the overheads associated with his method do not justify the improvements. He argues that the ambiguity of grammars in <em>real</em> applications is restricted by the fact that humans must be able to understand them.</p>
+</section>
+</section>
+<section id="jay-earley">
+<h2>8.3 Jay Earley<a class="headerlink" href="#jay-earley" title="Link to this heading">¶</a></h2>
+<p>One of the most popular generalised parsing algorithms is Earley’s algorithm [1, 1]. First described in 1967, this approach has received a lot of attention over the last 40 years. In this section we briefly discuss the operation of the algorithm and highlight some of its associated problems.</p>
+<p>Earley’s algorithm uses a grammar <span class="math notranslate nohighlight">\(G\)</span> to parse an input string <span class="math notranslate nohighlight">\(X_{1}\ldots X_{n}\)</span> by dynamically constructing sets of items similar to those used by the LR parsing algorithm. The only difference between Earley’s items and the standard LR items used in the DFA construction is the addition of a pointer back to the set containing the base item of the rule.</p>
+<p>For example consider the parse of the string <span class="math notranslate nohighlight">\(aab\)</span> with Grammar 6.1 shown on page 118. We begin by initialising the set <span class="math notranslate nohighlight">\(S_{0}\)</span> with the item (<span class="math notranslate nohighlight">\(S::=\cdot S\ 0\)</span>). We predict the rule for <span class="math notranslate nohighlight">\(S\)</span> and add the items (<span class="math notranslate nohighlight">\(S::=\cdot aSB\ 0\)</span>) and (<span class="math notranslate nohighlight">\(S::=\cdot b\ 0\)</span>) to <span class="math notranslate nohighlight">\(S_{0}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081749459.png" /></p>
+<p>Since no more rules can be predicted we continue by scanning the next input symbol, <span class="math notranslate nohighlight">\(a\)</span>, and construct the set <span class="math notranslate nohighlight">\(S_{1}\)</span> with the item (<span class="math notranslate nohighlight">\(S::=a\cdot SB\ 0\)</span>). We continue by predicting two more items, (<span class="math notranslate nohighlight">\(S::=\cdot aSB\ 1\)</span>) and (<span class="math notranslate nohighlight">\(S::=\cdot b\ 1\)</span>), which completes the construction of <span class="math notranslate nohighlight">\(S_{1}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081749736.png" /></p>
+<p>We construct <span class="math notranslate nohighlight">\(S_{2}\)</span> by scanning the next input symbol, <span class="math notranslate nohighlight">\(a\)</span>, adding the item (<span class="math notranslate nohighlight">\(S::=a\cdot SB\ 1\)</span>) and then predicting two more items (<span class="math notranslate nohighlight">\(S::=\cdot aSB\ 2\)</span>) and (<span class="math notranslate nohighlight">\(S::=\cdot b\ 2\)</span>).</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081749678.png" /></p>
+<p>We begin the construction of <span class="math notranslate nohighlight">\(S_{3}\)</span> by scanning the symbol <span class="math notranslate nohighlight">\(b\)</span> and adding the item (<span class="math notranslate nohighlight">\(S::=b\cdot\ 2\)</span>). Since the item has the dot at the end of a rule, we go back to the state indicated by the item’s pointer, in this case <span class="math notranslate nohighlight">\(S_{2}\)</span>, collect all items that have a dot before <span class="math notranslate nohighlight">\(S\)</span>, move the dot past the symbol and add them to <span class="math notranslate nohighlight">\(S_{3}\)</span>. In this case only one item is added to <span class="math notranslate nohighlight">\(S_{3}\)</span>, (<span class="math notranslate nohighlight">\(S::=aS\cdot B\ 1\)</span>).</p>
+<p>We continue by predicting the rule <span class="math notranslate nohighlight">\(B::=\epsilon\)</span> and add the item (<span class="math notranslate nohighlight">\(B::=\cdot\ 3\)</span>). Because the new item added is an <span class="math notranslate nohighlight">\(\epsilon\)</span>-rule it can be completed immediately. This involves searching over the current state for any items that have the dot before the non-terminal <span class="math notranslate nohighlight">\(B\)</span>. In this case we find the item (<span class="math notranslate nohighlight">\(S::=aS\cdot B\ 1\)</span>), which results in the new item (<span class="math notranslate nohighlight">\(S::=aSB\cdot\ 1\)</span>) being added to the current state. We then complete this item by going back to <span class="math notranslate nohighlight">\(S_{1}\)</span> and finding the item (<span class="math notranslate nohighlight">\(S::=a\cdot SB\ 0\)</span>) which we then add to <span class="math notranslate nohighlight">\(S_{3}\)</span> as (<span class="math notranslate nohighlight">\(S::=aS\cdot B\ 0\)</span>).</p>
+<p>Normally at this point we predict the item (<span class="math notranslate nohighlight">\(B::=\epsilon\)</span>). However, since the item already exists in the current state, we do not add it again to prevent the algorithm from not terminating on left recursive grammars. Instead we perform the any completions that have not already been performed in the current state for the non-terminal <span class="math notranslate nohighlight">\(B\)</span>. This results in the addition of the item (<span class="math notranslate nohighlight">\(S::=aSB\cdot\ 0\)</span>) which in turn causes the item (<span class="math notranslate nohighlight">\(S^{\prime}::=S\cdot\ 0\)</span>) to be added to <span class="math notranslate nohighlight">\(S_{3}\)</span>.
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081742387.png" /></p>
+<p>Since no more rules can be predicted we continue by scanning the next input symbol, a, and construct the set <span class="math notranslate nohighlight">\(S_{1}\)</span> with the item <span class="math notranslate nohighlight">\((S::=a \cdot S B 0)\)</span>. We continue by predicting two more items, <span class="math notranslate nohighlight">\((S:=\cdot a S B 1)\)</span> and <span class="math notranslate nohighlight">\((S::=\cdot b 1)\)</span>, which completes the construction of <span class="math notranslate nohighlight">\(S_{1}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081743234.png" />We construct <span class="math notranslate nohighlight">\(S_{2}\)</span> by scanning the next input symbol, a, adding the item ( <span class="math notranslate nohighlight">\(S:= a \cdot S B 1\)</span>) and then predicting two more items (<span class="math notranslate nohighlight">\(S::=\cdot aSB2\)</span>) and (<span class="math notranslate nohighlight">\(S::=\cdot b 2\)</span>).
+<img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081745543.png" />
+We begin the construction of <span class="math notranslate nohighlight">\(S_{3}\)</span> by scanning the symbol b and adding the item (<span class="math notranslate nohighlight">\(S::=b \cdot 2\)</span>). Since the item has the dot at the end of a rule, we go back to the state indicated by the item’s pointer, in this case <span class="math notranslate nohighlight">\(S_{2}\)</span>, collect all items that have a dot before S, move the dot past the symbol and add them to <span class="math notranslate nohighlight">\(S_{3}\)</span>. In this case only one item is added to <span class="math notranslate nohighlight">\(S_{3}\)</span>,(<span class="math notranslate nohighlight">\(S::=a S \cdot B 1\)</span>).
+We continue by predicting the rule <span class="math notranslate nohighlight">\(B::=\epsilon\)</span> and add the item (<span class="math notranslate nohighlight">\(B::=\cdot 3\)</span>). Because the new item added is an <span class="math notranslate nohighlight">\(\epsilon-rule\)</span> it can be completed immediately. This involves searching over the current state for any items that have the dot before the nonterminal B. In this case we find the item (<span class="math notranslate nohighlight">\(S::=a S \cdot B 1\)</span>), which results in the new item (<span class="math notranslate nohighlight">\(S::=a S B \cdot 1\)</span>) being added to the current state. We then complete this item by going back to <span class="math notranslate nohighlight">\(S_{1}\)</span> and finding the item (<span class="math notranslate nohighlight">\(S::=a \cdot S B 0\)</span>) which we then add to <span class="math notranslate nohighlight">\(S_{3}\)</span> as (<span class="math notranslate nohighlight">\(S:=a S \cdot B 0\)</span>).
+Normally at this point we predict the item (<span class="math notranslate nohighlight">\(B::=\epsilon\)</span>). However, since the item already exists in the current state, we do not add it again to prevent the algorithm from not terminating on left recursive grammars. Instead we perform the any completions that have not already been performed in the current state for the non-terminal B. This results in the addition of the item (S::=a S B \cdot 0) which in turn causes the item <span class="math notranslate nohighlight">\(\left(S^{\prime}::=S \cdot 0\right)\)</span> to be added to <span class="math notranslate nohighlight">\(S_{3}\)</span>.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081747603.png" /></p>
+<p>At this point no more items can be created and since we have consumed all the input and the item (<span class="math notranslate nohighlight">\(S^{\prime}::=S\cdot\ 0\)</span>) is in the final state, the parse terminates in success.
+Each item consists of a grammar rule with a dot on its right hand side, a pointer back to the set where we started searching for a derivation using this rule and a lookahead symbol. The dotted rule is that represents the part of the rule that has been used to recognise a portion of the input string,Instead of pre-constructing a DFA for <span class="math notranslate nohighlight">\(G\)</span>, the algorithm constructs the state sets on-the-fly. This avoids the need of a stack during a parse. As each input symbol is parsed a new set of items is constructed which represents the rules of the grammar that can be reached after reading the input string.
+Instead of pre-constructing a DFA for G, the algorithm constructs the state sets on-the-fly. This avoids the need of a stack during a parse. As each input symbol is parsed a new set of items is constructed which represents the rules of the grammar that can be reached after reading the input string.</p>
+<section id="earley-s-algorithm">
+<h3>Earley’s algorithm<a class="headerlink" href="#earley-s-algorithm" title="Link to this heading">¶</a></h3>
+<p>Earley’s algorithm accepts as input a grammar <span class="math notranslate nohighlight">\(G\)</span> and a string is <span class="math notranslate nohighlight">\(X_{1}\ldots X_{n}\)</span>. The grammar productions need to be numbered from <span class="math notranslate nohighlight">\(1,\ldots,d-1\)</span> and the grammar should be augmented, with the augmented rule numbered <span class="math notranslate nohighlight">\(0\)</span>. The <span class="math notranslate nohighlight">\(\dashv\)</span> symbol is the end of string terminator instead of <span class="math notranslate nohighlight">\(\$\)</span>.</p>
+<p>A state is defined as a four tuple <span class="math notranslate nohighlight">\(\langle p,j,f,\alpha\rangle\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> is a production number, <span class="math notranslate nohighlight">\(j\)</span> position in the rule, <span class="math notranslate nohighlight">\(f\)</span> is the number of the state set <span class="math notranslate nohighlight">\(S_{f}\)</span> that the item has been constructed from and <span class="math notranslate nohighlight">\(\alpha\)</span> is the lookahead used.</p>
+<p>The state set acts as a queue where every element is added to the end of the set unless it is already a member of the set.</p>
+<p>In addition to some data structures used to achieve the required time and space bounds extra searching needs to be done in the case of grammars containing <span class="math notranslate nohighlight">\(\epsilon\)</span>-rules. When an <span class="math notranslate nohighlight">\(\epsilon\)</span> reduction, <span class="math notranslate nohighlight">\(A::=\cdot\)</span> is encountered within a state set <span class="math notranslate nohighlight">\(S_{i}\)</span> it is necessary to go through the set <span class="math notranslate nohighlight">\(S_{i}\)</span> and move on any of the items with a dot before the nonterminal <span class="math notranslate nohighlight">\(A\)</span>. This must be done cautiously as some of the items that require the move may not have been created yet. It is therefore necessary to check if this reduction is possible when new items are added to the set.</p>
+<p>The formal specification of Earley’s algorithm shown below is taken from [1]. It is this algorithm that has been implemented and used to compare the performance between the RNGLR and BRNGLR algorithms in Chapter 10.</p>
+<p><img alt="image.png" src="https://blog-1314253005.cos.ap-guangzhou.myqcloud.com/202310081748422.png" /></p>
+<p>Earley’s algorithm is described as a depth-first top-down parser with bottom-up recognition [1]. In Chapter 2 we discussed how a non-deterministic parse can be performed by using a depth-first search to find a successful derivation, but decided that such an approach is infeasible for practical parsers because of the possible exponential time complexity required. Earley’s algorithm restricts the amount of searching that is required by incorporating bottom-up style reductions in his algorithm.</p>
+<p>The description given by Earley in his thesis constructs lists of items, however Graham [1] describes Earley’s algorithm using a recognition matrix, where the item <span class="math notranslate nohighlight">\((A::=\alpha\cdot\beta,i)\)</span> is in the <span class="math notranslate nohighlight">\((i,j)\)</span>th entry. This is done to allow a comparison between the CYK and Earley algorithms.</p>
+<p>Earley’s algorithm is often preferred to the CYK algorithm for two main reasons; the grammar does not need to be in any special form and the worst case time and space bounds are not always realised. In fact the algorithm is quadratic on all unambiguous grammars and linear on a large class of grammars which include the bounded state grammars and most LR(k) grammars (excluding some right recursive grammars). However, those LR(k) grammars that are not bounded state can be parsed in linear time if extra lookahead is used. (Note that the lookahead is not needed for the <span class="math notranslate nohighlight">\(n^{3}\)</span> and <span class="math notranslate nohighlight">\(n^{2}\)</span> bounds to be realised.)</p>
+<p>Earley claims that the recogniser can be easily extended to a parser without affecting the time bounds, but increasing the space bound to <span class="math notranslate nohighlight">\(n^{3}\)</span>, because of the need to store the parse trees. However, the extension presented in [1] has been shown to create spurious derivations for some parses [16].</p>
+<p>Earley also says that his algorithm has a large constant coefficient and when compared to the linear techniques does not compare well. This is because the linear parsers usually compile a parser for a given grammar and use it to parse the input without needing to refer to the grammar. A pre-compiled version of the algorithm is presented in [1] but does not work for all grammars. In fact it is shown that determining whether a given grammar is compilable is undecidable and they cannot even be enumerated. Others [1, 10, 11, 12] have attempted to improve the performance of Earley’s algorithm with the use of a pre-compiled table. We only know of one publication [1] that reports an implementation and experimental results of this approach.</p>
+<p>It is uncertain how the use of lookahead affects the algorithm’s efficiency. Earleystates that the <span class="math notranslate nohighlight">\(n^{3}\)</span> and <span class="math notranslate nohighlight">\(n^{2}\)</span> time bounds can be achieved without lookahead but <span class="math notranslate nohighlight">\(k\)</span> symbols of lookahead are required for the algorithm to be linear on LR(k) grammars. It is shown that the number of items in a set can grow indefinitely if lookahead is not used to restrict which items are added by the Completer step. It was later shown by [1] that a better approach is to use the lookahead in the Predictor step instead.</p>
+<p>Earley’s algorithm has been implemented essentially as written above in PAT and results of the comparison with the BRNGLR algorithm are given in Chapter 10.</p>
+</section>
+</section>
+<section id="bernard-lang">
+<h2>8.4 Bernard Lang<a class="headerlink" href="#bernard-lang" title="Link to this heading">¶</a></h2>
+<p>Lang developed a general formalism to resolve non-deterministic conflicts in a bottom-up automaton by performing a breadth first search. Tomita’s GLR parsing algorithm can be seen as a realisation of Lang’s ideas. Unfortunately, due to the complex description of his algorithm, Lang’s approach is often overlooked. In this section we discuss the main properties of Lang’s algorithm.</p>
+<p>Lang’s work is an efficient breadth first search approach to dealing with non-determinism in a bottom-up automaton (PDT). Earley’s algorithm is a general top-down parsing algorithm and Lang develops a bottom-up equivalent. The algorithm also outputs a context-free grammar whose language is the derivations of a sentence.</p>
+<p>Lang uses a PDT and an algorithm <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> to calculate all the possible derivations for a sentence <span class="math notranslate nohighlight">\(d\)</span> of length <span class="math notranslate nohighlight">\(n\)</span>. <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> successively builds <span class="math notranslate nohighlight">\(n+1\)</span><em>item sets</em> while parsing the input. Each item set <span class="math notranslate nohighlight">\(\mathcal{S}_{i}\)</span> contains the items that are reached after parsing the first <span class="math notranslate nohighlight">\(i\)</span> symbols of <span class="math notranslate nohighlight">\(d\)</span>. Each item takes the form <span class="math notranslate nohighlight">\(((p,A,i),(q,B,j))\)</span> where <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(q\)</span> are state numbers; <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are non-terminals; <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> are indexes into the input. The algorithm <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> uses old items and the PDT transitions to build the new items.</p>
+<p>Lang’s algorithm is cubic because the PDT only allows one symbol to be popped off the stack in one action. This means that his algorithm does not apply to the natural LR automaton unless either his algorithm or the automaton is modified, or the grammar’s rules have a maximum length of two [15]. Modifying the automaton significantly increases its size (the number of actions needed). If Lang’s algorithm is modified to allow more than one symbol to be popped off the stack in one action the complexity changes to <span class="math notranslate nohighlight">\(O(n^{k})\)</span>.</p>
+</section>
+<section id="klaas-sikkel">
+<h2>8.5 Klaas Sikkel<a class="headerlink" href="#klaas-sikkel" title="Link to this heading">¶</a></h2>
+<p>Klaas Sikkel’s book on parsing schemata [14] presents a framework capable of comparing different parsing techniques by abstracting away “algorithmic properties such as data structures or control mechanisms”. This framework allows the comparison of different algorithms in a way that facilitates cross fertilisation of ideas across the techniques. This is clearly an important approach, although somewhat more general than the specific goal of this thesis. In particular, parsing schemata are used to examine the similarity of Tomita’s and Earley’s algorithms.</p>
+<p>As part of the analysis undertaken in [22], there is a detailed discussion of Tomita’s approach and a description of a parallel bottom-up Tomita parser. The algorithm described is Algorithm 2 and included is a discussion of Kipps’ proof that this algorithm is worst case <span class="math notranslate nohighlight">\(O(n^{k+1})\)</span>. This proof, like Kipps’ original, is based on Tomita’s Algorithm 1 and ignores the sub-frontiers introduced in Algorithm 2. This is a proof that Algorithm 1 has worst case time complexity <span class="math notranslate nohighlight">\(O(n^{k+1})\)</span>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="7%20Reduction%20Incorporated%20Generalised%20LR%20parsing.html" class="btn btn-neutral float-left" title="7.Reduction Incorporated Generalised LR parsing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="9%20Some%20generalised%20parser%20generators.html" class="btn btn-neutral float-right" title="9. Some generalised parser generators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, xrtero.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
